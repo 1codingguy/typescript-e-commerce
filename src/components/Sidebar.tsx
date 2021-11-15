@@ -5,16 +5,16 @@ import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import CartButtons from './CartButtons'
 import { NavLinks } from './Navbar'
-// import { useProductsContext } from '../context/products_context'
+import { useProductsContext } from '../state/products_context'
 // import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-  const isSidebarOpen = true
+  const { isSidebarOpen } = useProductsContext()
   return (
     <SidebarContainer>
       <aside className={isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}>
         <SidebarHeader />
-        <NavLinks className='links' checkout={true} />
+        <NavLinks className='links' isSidebar={true} />
         <CartButtons />
       </aside>
     </SidebarContainer>
@@ -24,10 +24,11 @@ const Sidebar = () => {
 export default Sidebar
 
 const SidebarHeader = () => {
+  const { closeSidebar } = useProductsContext()
   return (
     <div className='sidebar-header'>
       <img src={logo} className='logo' alt='cute buddy' />
-      <button type='button' className='close-btn'>
+      <button type='button' className='close-btn' onClick={closeSidebar}>
         <FaTimes />
       </button>
     </div>

@@ -5,6 +5,7 @@ import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { links } from '../utils/constants'
 import CartButtons from './CartButtons'
+import { useProductsContext } from '../state/products_context'
 // import { useProductsContext } from '../context/products_context'
 // import { useUserContext } from '../context/user_context'
 
@@ -32,30 +33,34 @@ const Logo = () => {
 }
 
 const MenuIcon = () => {
+  const { openSidebar } = useProductsContext()
   return (
-    <button type='button' className='nav-toggle'>
+    <button type='button' className='nav-toggle' onClick={openSidebar}>
       <FaBars />
     </button>
   )
 }
 
-export const NavLinks: React.FC<{ className: string; checkout?: boolean }> = ({
+export const NavLinks: React.FC<{ className: string; isSidebar?: boolean }> = ({
   className,
-  checkout,
+  isSidebar,
 }) => {
+  const { closeSidebar } = useProductsContext()
   return (
     <ul className={className}>
       {links.map(({ id, text, url }) => {
         return (
-          <li key={id}>
+          <li key={id} onClick={isSidebar ? closeSidebar : undefined}>
             <Link to={url}>{text}</Link>
           </li>
         )
       })}
-      {/* 'checkout' only available in sidebar, not in Navbar */}
-      {checkout && (
+      {/* 'isSidebar' only available in sidebar, not in Navbar */}
+      {isSidebar && (
         <li>
-          <Link to='/checkout'>checkout</Link>{' '}
+          <Link to='/checkout' onClick={closeSidebar}>
+            checkout
+          </Link>{' '}
         </li>
       )}
     </ul>
