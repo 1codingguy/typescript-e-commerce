@@ -1,10 +1,11 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
+import PageHero from './PageHero'
+import Hero from './Hero'
 
 // import FeaturedProducts from './FeaturedProducts'
 // import CartButtons from './CartButtons'
-// import Hero from './Hero'
 // import Services from './Services'
 // import Contact from './Contact'
 // import Loading from './Loading'
@@ -16,15 +17,15 @@ import Sidebar from './Sidebar'
 // import Sort from './Sort'
 // import Stars from './Stars'
 // import CartContent from './CartContent'
-// import PageHero from './PageHero'
 // import StripeCheckout from './StripeCheckout'
 export {
   Navbar,
   Footer,
   Sidebar,
+  PageHero,
+  Hero
   // FeaturedProducts,
   // CartButtons,
-  // Hero,
   // Services,
   // Contact,
   // Loading,
@@ -36,6 +37,5 @@ export {
   // Sort,
   // Stars,
   // CartContent,
-  // PageHero,
   // StripeCheckout,
 }

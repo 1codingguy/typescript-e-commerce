@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../assets/logo_word.jpg'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import CartButtons from './CartButtons'
@@ -27,7 +27,9 @@ const SidebarHeader = () => {
   const { closeSidebar } = useProductsContext()
   return (
     <div className='sidebar-header'>
-      <img src={logo} className='logo' alt='cute buddy' />
+      <Link to='/' onClick={closeSidebar}>
+        <img src={logo} className='logo' alt='cute buddy' />
+      </Link>
       <button type='button' className='close-btn' onClick={closeSidebar}>
         <FaTimes />
       </button>
