@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-// import heroBcg from '../assets/hero-bcg.jpeg'
-// import heroBcg2 from '../assets/hero-bcg-2.jpeg'
+import hero from '../assets/hero.jpg'
+import { productData } from '../utils/productData'
 
 const Hero = () => {
   return (
-    <Wrapper className='section'>
+    <Wrapper className='section-center'>
       <article className='content'>
         <h1>
           high quality <br />
@@ -23,7 +23,10 @@ const Hero = () => {
         </Link>
       </article>
 
-      <article className='img-container'>{/* add two images here */}</article>
+      <article className='img-container'>
+        <img src={hero} alt="hero" className='main-img'/>
+        {/* insert one more image here */}
+      </article>
     </Wrapper>
   )
 }
