@@ -6,9 +6,9 @@ import {
   Home,
   Error,
   About,
-  //   SingleProduct,
+  SingleProduct,
+  Checkout,
   //   Cart,
-    Checkout,
   //   Products,
 } from './pages'
 
@@ -30,7 +30,7 @@ function App() {
         {/* <Route exact path='/products'>
           <Products />
         </Route> */}
-        {/* <Route exact path='/products/:id' children={<SingleProduct />} /> */}
+        <Route exact path='/products/:id' children={<SingleProduct />} />
         <Route exact path='/checkout'>
           <Checkout />
         </Route>

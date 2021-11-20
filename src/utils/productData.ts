@@ -72,7 +72,7 @@ export const productData: productDataType[] = [
   },
   {
     id: 'a01',
-    name: 'Vera Bradley mum\'s bag',
+    name: "Vera Bradley mum's bag",
     category: 'accessories',
     subCategory: null,
     price: 990,
@@ -84,4 +84,3 @@ export const productData: productDataType[] = [
 ]
 
 export const featuredProducts = productData.filter(product => product.featured)
-

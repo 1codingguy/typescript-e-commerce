@@ -12,7 +12,9 @@ const FeaturedProducts = () => {
         <div className='underline' />
       </div>
       <div className='section-center featured'>
-        {featuredProducts.map(product => <Product key={product.id} product={product}/>)}
+        {featuredProducts.map(product => (
+          <Product key={product.id} product={product} />
+        ))}
       </div>
     </Wrapper>
   )
