@@ -6,12 +6,12 @@ import Hero from './Hero'
 import Services from './Services'
 import Contact from './Contact'
 import FeaturedProducts from './FeaturedProducts'
+import Loading from './Loading'
+import ProductImages from './ProductImages'
+import AddToCart from './AddToCart'
 
 // import CartButtons from './CartButtons'
-// import Loading from './Loading'
 // import Error from './Error'
-// import ProductImages from './ProductImages'
-// import AddToCart from './AddToCart'
 // import Filters from './Filters'
 // import ProductList from './ProductList'
 // import Sort from './Sort'
@@ -27,12 +27,12 @@ export {
   Services,
   Contact,
   FeaturedProducts,
+  Loading,
+  ProductImages,
+  AddToCart,
 
   // CartButtons,
-  // Loading,
   // Error,
-  // ProductImages,
-  // AddToCart,
   // Filters,
   // ProductList,
   // Sort,

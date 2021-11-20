@@ -2,22 +2,30 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Product from './Product'
-import { featuredProducts } from '../utils/productData'
+import Loading from './Loading'
+import { useProductsContext } from '../state/products_context'
 
 const FeaturedProducts = () => {
-  return (
-    <Wrapper className='section'>
-      <div className='title'>
-        <h2>featured products</h2>
-        <div className='underline' />
-      </div>
-      <div className='section-center featured'>
-        {featuredProducts.map(product => (
-          <Product key={product.id} product={product} />
-        ))}
-      </div>
-    </Wrapper>
-  )
+  const { featuredProducts } = useProductsContext()
+
+  if (!featuredProducts) {
+    return <Loading />
+  } else {
+    return (
+      <Wrapper className='section'>
+        <div className='title'>
+          <h2>featured products</h2>
+          <div className='underline' />
+        </div>
+        <div className='section-center featured'>
+          {featuredProducts &&
+            featuredProducts.map(product => (
+              <Product key={product.id} product={product} />
+            ))}
+        </div>
+      </Wrapper>
+    )
+  }
 }
 
 const Wrapper = styled.section`

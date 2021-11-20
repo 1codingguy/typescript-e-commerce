@@ -40,9 +40,9 @@ const products_reducer = (state: initialStateType, action: any) => {
   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
     const singleProduct = state.allProducts.filter(
       (product: productDataType) => product.id === action.payload
-    )
+    )[0]
     // check if it returns the correct productDataType object instead of an array
-    return { ...state, singleProduct: { ...singleProduct } }
+    return { ...state, singleProduct }
   }
 
   return state

@@ -44,7 +44,7 @@ export const productData: productDataType[] = [
     age: [6],
     description: 'this is c01 clothing description',
     featured: true,
-    images: ['product_images/c01.JPG'],
+    images: ['/product_images/c01.JPG'],
   },
   {
     id: 'c02',
@@ -56,7 +56,12 @@ export const productData: productDataType[] = [
     height: [60],
     age: [0, 3, 6, 9],
     description: 'this is c02 clothing description',
-    images: ['product_images/c02-1.JPG', 'product_images/c02-2.JPG'],
+    images: [
+      '/product_images/c02-1.JPG',
+      '/product_images/c02-2.JPG',
+      '/product_images/c02-3.JPG',
+      '/product_images/c02-4.JPG',
+    ],
   },
   {
     id: 't01',
@@ -68,7 +73,12 @@ export const productData: productDataType[] = [
     age: [0, 3, 6, 9, 12, 24],
     description: 'this is t01 toy description',
     featured: true,
-    images: ['product_images/t01-1.JPG', 'product_images/t01-2.JPG'],
+    images: [
+      '/product_images/t01-1.JPG',
+      '/product_images/t01-2.JPG',
+      '/product_images/t01-3.JPG',
+      '/product_images/t01-4.JPG',
+    ],
   },
   {
     id: 'a01',
@@ -79,7 +89,12 @@ export const productData: productDataType[] = [
     forWhom: 'mummy',
     description: 'this is a01 accessories description',
     featured: true,
-    images: ['product_images/a01-1.JPG', 'product_images/a01-2.JPG'],
+    images: [
+      '/product_images/a01-1.JPG',
+      '/product_images/a01-2.JPG',
+      '/product_images/a01-3.JPG',
+      '/product_images/a01-4.JPG',
+    ],
   },
 ]
 

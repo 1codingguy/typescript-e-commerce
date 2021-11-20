@@ -12,19 +12,15 @@ const Hero = () => {
           high quality <br />
           product for your little one
         </h1>
-        <p>
-          <ul>
-            <li>Japanese, USA and European brands</li>
-            <li>New arrivals every week</li>
-          </ul>
-        </p>
+        <p>Japanese, USA and European brands</p>
+        <p>New arrivals every week</p>
         <Link to='/products' className='btn hero-btn'>
           shop now
         </Link>
       </article>
 
       <article className='img-container'>
-        <img src={hero} alt="hero" className='main-img'/>
+        <img src={hero} alt='hero' className='main-img' />
         {/* insert one more image here */}
       </article>
     </Wrapper>
