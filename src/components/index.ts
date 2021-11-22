@@ -10,12 +10,12 @@ import Loading from './Loading'
 import ProductImages from './ProductImages'
 import AddToCart from './AddToCart'
 import AmountButtons from './AmountButtons'
+import Filters from './Filters'
+import ProductList from './ProductList'
+import Sort from './Sort'
 
 // import CartButtons from './CartButtons'
 // import Error from './Error'
-// import Filters from './Filters'
-// import ProductList from './ProductList'
-// import Sort from './Sort'
 // import Stars from './Stars'
 // import CartContent from './CartContent'
 // import StripeCheckout from './StripeCheckout'
@@ -32,12 +32,12 @@ export {
   ProductImages,
   AddToCart,
   AmountButtons,
+  Filters,
+  ProductList,
+  Sort,
 
   // CartButtons,
   // Error,
-  // Filters,
-  // ProductList,
-  // Sort,
   // Stars,
   // CartContent,
   // StripeCheckout,

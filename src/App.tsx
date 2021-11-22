@@ -8,8 +8,8 @@ import {
   About,
   SingleProduct,
   Checkout,
+  Products,
   //   Cart,
-  //   Products,
 } from './pages'
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
         {/* <Route exact path='/cart'>
           <Cart />
         </Route> */}
-        {/* <Route exact path='/products'>
+        <Route exact path='/products'>
           <Products />
-        </Route> */}
+        </Route>
         <Route exact path='/products/:id' children={<SingleProduct />} />
         <Route exact path='/checkout'>
           <Checkout />
