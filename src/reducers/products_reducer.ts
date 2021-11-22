@@ -9,7 +9,7 @@ import {
   // GET_SINGLE_PRODUCT_ERROR,
 } from '../actions'
 
-import { initialStateType } from './products_context'
+import { initialStateType } from '../context/products_context'
 import { productDataType } from '../utils/productData'
 
 // export type State = {

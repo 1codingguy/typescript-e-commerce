@@ -2,7 +2,7 @@ import React from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useProductsContext } from '../state/products_context'
+import { useProductsContext } from '../context/products_context'
 // import { useCartContext } from '../state/cart_context'
 // import { useUserContext } from '../state/user_context'
 

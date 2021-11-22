@@ -2,11 +2,71 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
+import { productDataType } from '../utils/productData'
 // import { useCartContext } from '../context/cart_context'
-// import AmountButtons from './AmountButtons'
+import AmountButtons from './AmountButtons'
 
-const AddToCart = () => {
-  return <h4>addToCart </h4>
+const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
+  singleProduct,
+}) => {
+  // need the number of stock here as well after setting up in productData array
+  const { id, colors } = { ...singleProduct }
+
+  const [colorIndex, setColorIndex] = useState(0)
+  const mainColor = colors?.[colorIndex]
+
+  const [amount, setAmount] = useState(1)
+
+  // if there's stock variable, add logic to allow adding the amount === stock
+  const increaseAmount = () => setAmount(amount + 1)
+
+  const decreaseAmount = () => {
+    if (amount > 1) {
+      setAmount(amount - 1)
+    }
+  }
+
+  return (
+    <Wrapper>
+      {colors && (
+        <div className='colors'>
+          <span>colors :</span>
+          <div>
+            {colors?.map((color, index) => {
+              return (
+                <button
+                  key={`${color}_${index}`}
+                  style={{ background: color }}
+                  className={
+                    index === colorIndex ? 'color-btn active' : 'color-btn'
+                  }
+                  onClick={() => setColorIndex(index)}
+                >
+                  {colorIndex === index && (
+                    <FaCheck
+                      style={
+                        color === '#FFFFFF' ? { color: 'black' } : undefined
+                      }
+                    />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+      <div className='btn-container'>
+        <AmountButtons
+          amount={amount}
+          increase={increaseAmount}
+          decrease={decreaseAmount}
+        />
+        <Link to='/cart' className='btn'>
+          add to cart
+        </Link>
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`
@@ -31,7 +91,8 @@ const Wrapper = styled.section`
     border-radius: 50%;
     background: #222;
     margin-right: 0.5rem;
-    border: none;
+    /* border: none; */
+    border: 1px solid black;
     cursor: pointer;
     opacity: 0.5;
     display: flex;
@@ -42,6 +103,7 @@ const Wrapper = styled.section`
       color: var(--clr-white);
     }
   }
+
   .active {
     opacity: 1;
   }

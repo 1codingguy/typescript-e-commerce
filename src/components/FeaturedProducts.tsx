@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Product from './Product'
 import Loading from './Loading'
-import { useProductsContext } from '../state/products_context'
+import { useProductsContext } from '../context/products_context'
 
 const FeaturedProducts = () => {
   const { featuredProducts } = useProductsContext()

@@ -9,6 +9,7 @@ import FeaturedProducts from './FeaturedProducts'
 import Loading from './Loading'
 import ProductImages from './ProductImages'
 import AddToCart from './AddToCart'
+import AmountButtons from './AmountButtons'
 
 // import CartButtons from './CartButtons'
 // import Error from './Error'
@@ -30,6 +31,7 @@ export {
   Loading,
   ProductImages,
   AddToCart,
+  AmountButtons,
 
   // CartButtons,
   // Error,

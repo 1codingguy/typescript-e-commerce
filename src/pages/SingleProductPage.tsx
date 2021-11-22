@@ -1,28 +1,23 @@
 import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { useProductsContext } from '../state/products_context'
+import { useProductsContext } from '../context/products_context'
 import { formatPrice } from '../utils/helpers'
-import {
-  ProductImages,
-  Loading,
-  PageHero,
-  AddToCart,
-} from '../components'
+import { ProductImages, Loading, PageHero, AddToCart } from '../components'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { productDataType } from '../utils/productData'
 
 const SingleProductPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { singleProduct: product, fetchSingleProduct } = useProductsContext()
+  const { singleProduct, fetchSingleProduct } = useProductsContext()
 
-  const { name, price, description, images } = { ...product }
+  const { name, price, description, images } = { ...singleProduct }
 
   useEffect(() => {
     fetchSingleProduct(id)
-  }, [id])
+  }, [])
 
-  if (!product) {
+  if (!singleProduct) {
     return <Loading />
   } else {
     return (
@@ -33,7 +28,7 @@ const SingleProductPage = () => {
             back to products
           </Link>
           <div className='product-center'>
-            <ProductImages images={images}/>
+            <ProductImages images={images} />
             <section className='content'>
               <h2>{name}</h2>
               {/* insert stars component here  */}
@@ -53,7 +48,7 @@ const SingleProductPage = () => {
               </p>
               <hr />
               {/* insert logic: if stock larger than 0, then display AddToCart component */}
-              <AddToCart />
+              <AddToCart singleProduct={singleProduct} />
             </section>
           </div>
         </div>

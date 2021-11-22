@@ -5,7 +5,7 @@ import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import CartButtons from './CartButtons'
 import { NavLinks } from './Navbar'
-import { useProductsContext } from '../state/products_context'
+import { useProductsContext } from '../context/products_context'
 // import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {

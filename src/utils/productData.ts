@@ -26,7 +26,7 @@ export type productDataType = {
   forWhom: string
   height?: number[]
   age?: number[]
-  color?: string[]
+  colors?: string[] // colors should be hex value instead of a string describing the color
   description: string
   featured?: boolean
   images: string[]
@@ -45,6 +45,7 @@ export const productData: productDataType[] = [
     description: 'this is c01 clothing description',
     featured: true,
     images: ['/product_images/c01.JPG'],
+    colors: ['#FFFFFF', '#000000'],
   },
   {
     id: 'c02',
