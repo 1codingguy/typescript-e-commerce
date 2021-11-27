@@ -1,12 +1,106 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
-import { formatPrice } from '../utils/helpers'
+import { formatPrice, getUniqueValues } from '../utils/helpers'
 // import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
-  return <h4>filters</h4>
+  const {
+    updateFilters,
+    clearFilters,
+    allProducts,
+    filters: { searchTerm, category, minPrice, maxPrice, price, forWhom },
+  } = useFilterContext()
+
+  const uniqueCategories = getUniqueValues(allProducts, 'category')
+  const uniqueForWhoms = getUniqueValues(allProducts, 'forWhom')
+  const uniqueAges = getUniqueValues(allProducts, 'age')
+
+  // console.log(uniqueCategories)
+  // console.log(uniqueForWhom)
+  // console.log(uniqueAge)
+
+  return (
+    <Wrapper>
+      <div className='content'>
+        <form onSubmit={e => e.preventDefault()}>
+          {/* search input */}
+          <div className='form-control'>
+            <input
+              type='text'
+              name='searchTerm'
+              placeholder='search'
+              className='search-input'
+              value={searchTerm}
+              onChange={e => updateFilters(e)}
+            />
+          </div>
+          {/* end of search input */}
+          {/* categories */}
+          <div className='form-control'>
+            <h5>category</h5>
+            <div>
+              {uniqueCategories.map((uniqueCategory, index) => {
+                if (typeof uniqueCategory === 'string') {
+                  return (
+                    <button
+                      key={`${uniqueCategory}`}
+                      type='button'
+                      name='category'
+                      className={
+                        uniqueCategory.toLowerCase() === category
+                          ? 'active'
+                          : undefined
+                      }
+                      onClick={e => updateFilters(e)}
+                    >
+                      {uniqueCategory}
+                    </button>
+                  )
+                }
+                return null
+              })}
+            </div>
+          </div>
+          {/* end of categories */}
+          {/* forWhom */}
+          <div className='form-control'>
+            <h5>Product for who?</h5>
+            <select
+              name='forWhom'
+              value={forWhom}
+              onChange={updateFilters}
+              className='company'
+            >
+              {uniqueForWhoms.map((uniqueForWhom, index) => {
+                if (typeof uniqueForWhom === 'string') {
+                  return (
+                    <option key={`${uniqueForWhom}`} value={uniqueForWhom}>
+                      {uniqueForWhom}
+                    </option>
+                  )
+                } return null
+              })}
+            </select>
+          </div>
+          {/* end of forWhom */}
+          {/* price */}
+          <div className="form-control">
+            <h5>price</h5>
+            <p className='price'>{formatPrice(price)}</p>
+            <input type="range" name='price' onChange={updateFilters} min={minPrice} max={maxPrice} value={price}/>
+
+          </div>
+          {/* end of price */}
+          {/* insert categories with checkbox here */}
+          
+        </form>
+          {/* clear filters */}
+          <button type='button' className='clear-btn' onClick={clearFilters}>clear filters</button>
+      </div>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`

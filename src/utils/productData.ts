@@ -9,7 +9,7 @@
  *
  *
  * age categories:
- * 0: 0-3 months
+ * 1: 0-3 months, because 0 is falsy in JS, value get filtered out
  * 3: 3-6 months
  * 6: 6-9 months
  * 9: 9-12 months
@@ -24,13 +24,15 @@ export type productDataType = {
   subCategory: string | null
   price: number
   forWhom: string
-  height?: number[]
-  age?: number[]
+  height?: string[]
+  age?: string[]
   colors?: string[] // colors should be hex value instead of a string describing the color
   description: string
   featured?: boolean
   images: string[]
 }
+
+export type productDataTypeKey = keyof productDataType
 
 export const productData: productDataType[] = [
   {
@@ -40,8 +42,8 @@ export const productData: productDataType[] = [
     subCategory: 'bodysuit',
     price: 490,
     forWhom: 'baby boys and girls',
-    height: [50],
-    age: [6],
+    height: ['50'],
+    age: ['6'],
     description: 'this is c01 clothing description',
     featured: true,
     images: ['/product_images/c01.JPG'],
@@ -54,8 +56,8 @@ export const productData: productDataType[] = [
     subCategory: 'bodysuit',
     price: 390,
     forWhom: 'baby boys',
-    height: [60],
-    age: [0, 3, 6, 9],
+    height: ['60'],
+    age: ['0', '3', '6', '9'],
     description: 'this is c02 clothing description',
     images: [
       '/product_images/c02-1.JPG',
@@ -71,7 +73,7 @@ export const productData: productDataType[] = [
     subCategory: null,
     price: 1780,
     forWhom: 'baby boys and girls',
-    age: [0, 3, 6, 9, 12, 24],
+    age: ['0', '3', '6', '9', '12', '24'],
     description: 'this is t01 toy description',
     featured: true,
     images: [

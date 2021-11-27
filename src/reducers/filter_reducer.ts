@@ -6,9 +6,9 @@ import {
   SORT_PRODUCTS,
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
-  // CLEAR_FILTERS,
+  CLEAR_FILTERS,
 } from '../actions'
-import { initialStateType } from '../context/filter_context'
+import { defaultFilters, initialStateType } from '../context/filter_context'
 import { productDataType } from '../utils/productData'
 
 const filter_reducer = (state: initialStateType, action: any) => {
@@ -57,11 +57,47 @@ const filter_reducer = (state: initialStateType, action: any) => {
     const { name, value } = action.payload
     return { ...state, filters: { ...state.filters, [name]: value } }
   }
-  if (action.type === FILTER_PRODUCTS){
-    console.log('filtering products')
-    return {...state}
+  if (action.type === FILTER_PRODUCTS) {
+    const { allProducts } = state
+    const { searchTerm, category, forWhom, price } = state.filters
+
+    let tempProducts = [...allProducts]
+    // filter by searchTerm
+    if (searchTerm) {
+      tempProducts = tempProducts.filter(product => {
+        return product.name.toLowerCase().includes(searchTerm)
+      })
+    }
+    // category
+    if (category !== 'all') {
+      tempProducts = tempProducts.filter(product => {
+        return product.category === category
+      })
+    }
+    // forWhom
+    if (forWhom !== 'all') {
+      tempProducts = tempProducts.filter(product => {
+        return product.forWhom === forWhom
+      })
+    }
+    // price
+    tempProducts = tempProducts.filter(product => {
+      return product.price <= price
+    })
+    return { ...state, filteredProducts: tempProducts }
   }
-  // return state
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        searchTerm: '',
+        category: 'all',
+        price: state.filters.maxPrice,
+        forWhom: 'all',
+      },
+    }
+  }
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 
