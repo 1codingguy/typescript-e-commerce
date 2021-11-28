@@ -33,7 +33,7 @@ const Sort = () => {
       <p>{filteredProducts.length} products found</p>
       <hr />
       <form>
-        <label htmlFor='sort'>sort by</label>
+        <label htmlFor='sort'>sort by{` `}</label>
         <select
           name='sort'
           id='sort'
@@ -109,6 +109,9 @@ const Wrapper = styled.section`
   }
   label {
     font-size: 1rem;
+    text-transform: capitalize;
+  }
+  select {
     text-transform: capitalize;
   }
 `

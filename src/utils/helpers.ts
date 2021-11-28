@@ -12,9 +12,6 @@ export const getUniqueValues = (
   category: productDataTypeKey
 ) => {
   let unique = data.map(item => item[category]).flat().filter(Boolean)
-  // if (category === 'colors') {
-  //   unique = unique.flat()
-  // }
 
   return ['all', ...Array.from(new Set(unique))]
 }

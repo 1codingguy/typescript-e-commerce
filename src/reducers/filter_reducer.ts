@@ -1,14 +1,14 @@
 import {
   LOAD_PRODUCTS,
-  SET_LISTVIEW,
-  SET_GRIDVIEW,
+  SET_LIST_VIEW,
+  SET_GRID_VIEW,
   UPDATE_SORT,
   SORT_PRODUCTS,
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
 } from '../actions'
-import { defaultFilters, initialStateType } from '../context/filter_context'
+import { initialStateType } from '../context/filter_context'
 import { productDataType } from '../utils/productData'
 
 const filter_reducer = (state: initialStateType, action: any) => {
@@ -24,10 +24,10 @@ const filter_reducer = (state: initialStateType, action: any) => {
       filters: { ...state.filters, maxPrice, price: maxPrice },
     }
   }
-  if (action.type === SET_GRIDVIEW) {
+  if (action.type === SET_GRID_VIEW) {
     return { ...state, gridView: true }
   }
-  if (action.type === SET_LISTVIEW) {
+  if (action.type === SET_LIST_VIEW) {
     return { ...state, gridView: false }
   }
   if (action.type === UPDATE_SORT) {
@@ -54,18 +54,45 @@ const filter_reducer = (state: initialStateType, action: any) => {
     return { ...state, filteredProducts: tempProducts }
   }
   if (action.type === UPDATE_FILTERS) {
-    const { name, value } = action.payload
+    let { name, value, checked } = action.payload
+    if (name === 'age') {
+      if (checked) {
+        // console.log('a box is just checked')
+        state.filters.age.push(value)
+        // console.log(state.filters.age)
+        value = state.filters.age
+        // console.log(value)
+      }
+      if (!checked) {
+        // console.log('a box is UNCHECKED')
+        state.filters.age = state.filters.age.filter(
+          ageValue => ageValue !== value
+        )
+        value = state.filters.age
+        // console.log(value)
+      }
+    }
     return { ...state, filters: { ...state.filters, [name]: value } }
   }
   if (action.type === FILTER_PRODUCTS) {
     const { allProducts } = state
-    const { searchTerm, category, forWhom, price } = state.filters
+    const {
+      searchTerm,
+      category,
+      forWhom,
+      price,
+      age: ageFilters,
+    } = state.filters
 
     let tempProducts = [...allProducts]
     // filter by searchTerm
     if (searchTerm) {
       tempProducts = tempProducts.filter(product => {
-        return product.name.toLowerCase().includes(searchTerm)
+        // console.log(product)
+        return (
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.description.toLowerCase().includes(searchTerm)
+        )
       })
     }
     // category
@@ -80,10 +107,32 @@ const filter_reducer = (state: initialStateType, action: any) => {
         return product.forWhom === forWhom
       })
     }
+    // age
+    if (ageFilters.length > 0) {
+      // console.log('there is something in the age array');
+
+      let temp = tempProducts.filter(tempProduct => {
+        const { age: productAgeArray } = tempProduct
+        // needs to return ONE true/ false value here
+
+        const inner = ageFilters.map(ageFilter => {
+          // console.log('iterating: ', ageFilter)
+          // console.log(productAgeArray?.includes(ageFilter))
+          return productAgeArray?.includes(ageFilter)
+        })
+        // console.log(Array.isArray(inner))
+        console.log(inner)
+        console.log(inner.every(value => Boolean(value)))
+
+        return inner.every(value => Boolean(value))
+      })
+      console.log(temp)
+    }
     // price
     tempProducts = tempProducts.filter(product => {
       return product.price <= price
     })
+
     return { ...state, filteredProducts: tempProducts }
   }
   if (action.type === CLEAR_FILTERS) {
@@ -95,6 +144,7 @@ const filter_reducer = (state: initialStateType, action: any) => {
         category: 'all',
         price: state.filters.maxPrice,
         forWhom: 'all',
+        age: [],
       },
     }
   }

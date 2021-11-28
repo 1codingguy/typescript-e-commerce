@@ -7,8 +7,6 @@ import { productDataType } from '../utils/productData'
 const ListView: React.FC<{ filteredProducts: productDataType[] }> = ({
   filteredProducts,
 }) => {
-  console.log(filteredProducts)
-
   return (
     <Wrapper>
       {filteredProducts.map(product => {

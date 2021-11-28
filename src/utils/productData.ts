@@ -43,7 +43,7 @@ export const productData: productDataType[] = [
     price: 490,
     forWhom: 'baby boys and girls',
     height: ['50'],
-    age: ['6'],
+    age: ['3', '6'],
     description: 'this is c01 clothing description',
     featured: true,
     images: ['/product_images/c01.JPG'],
@@ -57,8 +57,8 @@ export const productData: productDataType[] = [
     price: 390,
     forWhom: 'baby boys',
     height: ['60'],
-    age: ['0', '3', '6', '9'],
-    description: 'this is c02 clothing description',
+    age: ['1', '3', '6', '9'],
+    description: 'this is for football fans',
     images: [
       '/product_images/c02-1.JPG',
       '/product_images/c02-2.JPG',
@@ -73,7 +73,7 @@ export const productData: productDataType[] = [
     subCategory: null,
     price: 1780,
     forWhom: 'baby boys and girls',
-    age: ['0', '3', '6', '9', '12', '24'],
+    age: ['1', '3', '6', '9', '12', '24'],
     description: 'this is t01 toy description',
     featured: true,
     images: [

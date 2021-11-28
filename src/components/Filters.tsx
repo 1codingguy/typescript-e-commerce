@@ -10,7 +10,7 @@ const Filters = () => {
     updateFilters,
     clearFilters,
     allProducts,
-    filters: { searchTerm, category, minPrice, maxPrice, price, forWhom },
+    filters: { searchTerm, category, minPrice, maxPrice, price, forWhom, age },
   } = useFilterContext()
 
   const uniqueCategories = getUniqueValues(allProducts, 'category')
@@ -80,24 +80,58 @@ const Filters = () => {
                       {uniqueForWhom}
                     </option>
                   )
-                } return null
+                }
+                return null
               })}
             </select>
           </div>
           {/* end of forWhom */}
           {/* price */}
-          <div className="form-control">
+          <div className='form-control'>
             <h5>price</h5>
             <p className='price'>{formatPrice(price)}</p>
-            <input type="range" name='price' onChange={updateFilters} min={minPrice} max={maxPrice} value={price}/>
-
+            <input
+              type='range'
+              name='price'
+              onChange={updateFilters}
+              min={minPrice}
+              max={maxPrice}
+              value={price}
+            />
           </div>
           {/* end of price */}
-          {/* insert categories with checkbox here */}
-          
+          {/* age */}
+
+          <div className='form-control shipping'>
+            <h5>age</h5>
+            <label>
+              <input
+                type='checkbox'
+                name='age'
+                value='1'
+                onChange={e => updateFilters(e)}
+                checked={age.includes('1') ? true : false}
+              />
+              {'  '}0-3 months
+            </label>
+            <label>
+              <input
+                type='checkbox'
+                name='age'
+                value='3'
+                onChange={e => updateFilters(e)}
+                checked={age.includes('3') ? true : false}
+              />
+              {'  '}3-6 months
+            </label>
+          </div>
+
+          {/* end of age */}
         </form>
-          {/* clear filters */}
-          <button type='button' className='clear-btn' onClick={clearFilters}>clear filters</button>
+        {/* clear filters */}
+        <button type='button' className='clear-btn' onClick={clearFilters}>
+          clear filters
+        </button>
       </div>
     </Wrapper>
   )
@@ -141,6 +175,7 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
+    text-transform: capitalize;
   }
   .colors {
     display: flex;
@@ -182,7 +217,7 @@ const Wrapper = styled.section`
   }
   .shipping {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
     text-transform: capitalize;
     column-gap: 0.5rem;
