@@ -55,21 +55,30 @@ const filter_reducer = (state: initialStateType, action: any) => {
   }
   if (action.type === UPDATE_FILTERS) {
     let { name, value, checked } = action.payload
+    let { age, height } = state.filters
     if (name === 'age') {
       if (checked) {
         // console.log('a box is just checked')
-        state.filters.age.push(value)
-        // console.log(state.filters.age)
-        value = state.filters.age
+        age.push(value)
+        // console.log(age)
+        value = age
         // console.log(value)
       }
       if (!checked) {
         // console.log('a box is UNCHECKED')
-        state.filters.age = state.filters.age.filter(
-          ageValue => ageValue !== value
-        )
-        value = state.filters.age
+        age = age.filter(ageValue => ageValue !== value)
+        value = age
         // console.log(value)
+      }
+    }
+    if (name === 'height') {
+      if (checked) {
+        height.push(value)
+        value = height
+      }
+      if (!checked) {
+        height = height.filter(heightValue => heightValue !== value)
+        value = height
       }
     }
     return { ...state, filters: { ...state.filters, [name]: value } }
@@ -82,6 +91,7 @@ const filter_reducer = (state: initialStateType, action: any) => {
       forWhom,
       price,
       age: ageFilters,
+      height: heightFilters,
     } = state.filters
 
     let tempProducts = [...allProducts]
@@ -111,22 +121,32 @@ const filter_reducer = (state: initialStateType, action: any) => {
     if (ageFilters.length > 0) {
       // console.log('there is something in the age array');
 
-      let temp = tempProducts.filter(tempProduct => {
+      tempProducts = tempProducts.filter(tempProduct => {
         const { age: productAgeArray } = tempProduct
         // needs to return ONE true/ false value here
+        return ageFilters
+          .map(ageFilter => productAgeArray?.includes(ageFilter))
+          .every(value => Boolean(value))
 
-        const inner = ageFilters.map(ageFilter => {
-          // console.log('iterating: ', ageFilter)
-          // console.log(productAgeArray?.includes(ageFilter))
-          return productAgeArray?.includes(ageFilter)
-        })
-        // console.log(Array.isArray(inner))
-        console.log(inner)
-        console.log(inner.every(value => Boolean(value)))
+        // see every step with following lines
+        // const boolArray = ageFilters.map(ageFilter => {
+        //   return productAgeArray?.includes(ageFilter)
+        // })
+        // console.log(boolArray)
+        // console.log(boolArray.every(value => Boolean(value)))
 
-        return inner.every(value => Boolean(value))
+        // return boolArray.every(value => Boolean(value))
       })
-      console.log(temp)
+      // console.log(tempProducts)
+    }
+    // height
+    if (heightFilters.length > 0) {
+      tempProducts = tempProducts.filter(tempProduct => {
+        const { height: productHeightArray } = tempProduct
+        return heightFilters
+          .map(heightFilter => productHeightArray?.includes(heightFilter))
+          .every(value => Boolean(value))
+      })
     }
     // price
     tempProducts = tempProducts.filter(product => {
@@ -145,6 +165,7 @@ const filter_reducer = (state: initialStateType, action: any) => {
         price: state.filters.maxPrice,
         forWhom: 'all',
         age: [],
+        height: [],
       },
     }
   }

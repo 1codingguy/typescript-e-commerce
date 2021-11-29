@@ -2,138 +2,199 @@ import React from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import { formatPrice, getUniqueValues } from '../utils/helpers'
-// import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import { ageCategories, heightCategories } from '../utils/constants'
 
 const Filters = () => {
-  const {
-    updateFilters,
-    clearFilters,
-    allProducts,
-    filters: { searchTerm, category, minPrice, maxPrice, price, forWhom, age },
-  } = useFilterContext()
-
-  const uniqueCategories = getUniqueValues(allProducts, 'category')
-  const uniqueForWhoms = getUniqueValues(allProducts, 'forWhom')
-  const uniqueAges = getUniqueValues(allProducts, 'age')
-
-  // console.log(uniqueCategories)
-  // console.log(uniqueForWhom)
-  // console.log(uniqueAge)
-
   return (
     <Wrapper>
       <div className='content'>
         <form onSubmit={e => e.preventDefault()}>
-          {/* search input */}
-          <div className='form-control'>
-            <input
-              type='text'
-              name='searchTerm'
-              placeholder='search'
-              className='search-input'
-              value={searchTerm}
-              onChange={e => updateFilters(e)}
-            />
-          </div>
-          {/* end of search input */}
-          {/* categories */}
-          <div className='form-control'>
-            <h5>category</h5>
-            <div>
-              {uniqueCategories.map((uniqueCategory, index) => {
-                if (typeof uniqueCategory === 'string') {
-                  return (
-                    <button
-                      key={`${uniqueCategory}`}
-                      type='button'
-                      name='category'
-                      className={
-                        uniqueCategory.toLowerCase() === category
-                          ? 'active'
-                          : undefined
-                      }
-                      onClick={e => updateFilters(e)}
-                    >
-                      {uniqueCategory}
-                    </button>
-                  )
-                }
-                return null
-              })}
-            </div>
-          </div>
-          {/* end of categories */}
-          {/* forWhom */}
-          <div className='form-control'>
-            <h5>Product for who?</h5>
-            <select
-              name='forWhom'
-              value={forWhom}
-              onChange={updateFilters}
-              className='company'
-            >
-              {uniqueForWhoms.map((uniqueForWhom, index) => {
-                if (typeof uniqueForWhom === 'string') {
-                  return (
-                    <option key={`${uniqueForWhom}`} value={uniqueForWhom}>
-                      {uniqueForWhom}
-                    </option>
-                  )
-                }
-                return null
-              })}
-            </select>
-          </div>
-          {/* end of forWhom */}
-          {/* price */}
-          <div className='form-control'>
-            <h5>price</h5>
-            <p className='price'>{formatPrice(price)}</p>
-            <input
-              type='range'
-              name='price'
-              onChange={updateFilters}
-              min={minPrice}
-              max={maxPrice}
-              value={price}
-            />
-          </div>
-          {/* end of price */}
-          {/* age */}
-
-          <div className='form-control shipping'>
-            <h5>age</h5>
-            <label>
-              <input
-                type='checkbox'
-                name='age'
-                value='1'
-                onChange={e => updateFilters(e)}
-                checked={age.includes('1') ? true : false}
-              />
-              {'  '}0-3 months
-            </label>
-            <label>
-              <input
-                type='checkbox'
-                name='age'
-                value='3'
-                onChange={e => updateFilters(e)}
-                checked={age.includes('3') ? true : false}
-              />
-              {'  '}3-6 months
-            </label>
-          </div>
-
-          {/* end of age */}
+          <Search />
+          <Category />
+          <ForWhom />
+          <Price />
+          <Age />
+          <Height />
         </form>
-        {/* clear filters */}
-        <button type='button' className='clear-btn' onClick={clearFilters}>
-          clear filters
-        </button>
+        <ClearFilters />
       </div>
     </Wrapper>
+  )
+}
+
+export default Filters
+
+const Search = () => {
+  const {
+    updateFilters,
+    filters: { searchTerm },
+  } = useFilterContext()
+
+  return (
+    <div className='form-control'>
+      <input
+        type='text'
+        name='searchTerm'
+        placeholder='search'
+        className='search-input'
+        value={searchTerm}
+        onChange={e => updateFilters(e)}
+      />
+    </div>
+  )
+}
+
+const Category = () => {
+  const {
+    updateFilters,
+    allProducts,
+    filters: { category },
+  } = useFilterContext()
+  const uniqueCategories = getUniqueValues(allProducts, 'category')
+
+  return (
+    <div className='form-control'>
+      <h5>category</h5>
+      <div>
+        {uniqueCategories.map((uniqueCategory, index) => {
+          if (typeof uniqueCategory === 'string') {
+            return (
+              <button
+                key={`${uniqueCategory}`}
+                type='button'
+                name='category'
+                className={
+                  uniqueCategory.toLowerCase() === category
+                    ? 'active'
+                    : undefined
+                }
+                onClick={e => updateFilters(e)}
+              >
+                {uniqueCategory}
+              </button>
+            )
+          }
+          return null
+        })}
+      </div>
+    </div>
+  )
+}
+
+const ForWhom = () => {
+  const {
+    updateFilters,
+    allProducts,
+    filters: { forWhom },
+  } = useFilterContext()
+  const uniqueForWhoms = getUniqueValues(allProducts, 'forWhom')
+  return (
+    <div className='form-control'>
+      <h5>Product for who?</h5>
+      <select
+        name='forWhom'
+        value={forWhom}
+        onChange={updateFilters}
+        className='company'
+      >
+        {uniqueForWhoms.map((uniqueForWhom, index) => {
+          if (typeof uniqueForWhom === 'string') {
+            return (
+              <option key={`${uniqueForWhom}`} value={uniqueForWhom}>
+                {uniqueForWhom}
+              </option>
+            )
+          }
+          return null
+        })}
+      </select>
+    </div>
+  )
+}
+
+const Price = () => {
+  const {
+    updateFilters,
+    filters: { minPrice, maxPrice, price },
+  } = useFilterContext()
+  return (
+    <div className='form-control'>
+      <h5>price</h5>
+      <p className='price'>{formatPrice(price)}</p>
+      <input
+        type='range'
+        name='price'
+        onChange={updateFilters}
+        min={minPrice}
+        max={maxPrice}
+        value={price}
+      />
+    </div>
+  )
+}
+
+const Age = () => {
+  const {
+    updateFilters,
+    filters: { age },
+  } = useFilterContext()
+
+  return (
+    <div className='form-control checkbox'>
+      <h5>age</h5>
+      {ageCategories.map(({ categoryKey, categoryValue }) => {
+        return (
+          <label key={categoryValue}>
+            <input
+              type='checkbox'
+              name='age'
+              value={categoryKey}
+              onChange={e => updateFilters(e)}
+              checked={age.includes(categoryKey) ? true : false}
+            />
+            {'  '}
+            {categoryValue}
+          </label>
+        )
+      })}
+    </div>
+  )
+}
+
+const Height = () => {
+  const {
+    updateFilters,
+    filters: { height },
+  } = useFilterContext()
+
+  return (
+    <div className='form-control checkbox'>
+      <h5>height</h5>
+      {heightCategories.map(({ categoryKey, categoryValue }) => {
+        return (
+          <label key={categoryValue}>
+            <input
+              type='checkbox'
+              name='height'
+              value={categoryKey}
+              onChange={e => updateFilters(e)}
+              checked={height.includes(categoryKey) ? true : false}
+            />
+            {'  '}
+            {categoryValue}
+          </label>
+        )
+      })}
+    </div>
+  )
+}
+
+const ClearFilters = () => {
+  const { clearFilters } = useFilterContext()
+  return (
+    <button type='button' className='clear-btn' onClick={clearFilters}>
+      clear filters
+    </button>
   )
 }
 
@@ -215,7 +276,7 @@ const Wrapper = styled.section`
   .price {
     margin-bottom: 0.25rem;
   }
-  .shipping {
+  .checkbox {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
@@ -236,5 +297,3 @@ const Wrapper = styled.section`
     }
   }
 `
-
-export default Filters

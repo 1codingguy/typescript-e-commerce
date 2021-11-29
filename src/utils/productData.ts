@@ -5,11 +5,12 @@
  * 70: 70-79 cm
  * 80: 80-89 cm
  * 90: 90-99 cm
- * 100: 100-110cm
+ * 100: 100-109 cm
+ * 110: 110 cm +
  *
  *
  * age categories:
- * 1: 0-3 months, because 0 is falsy in JS, value get filtered out
+ * 0: 0-3 months, the key is of type string, so '0' is not falsy, if the key where in number, then 0 is falsy
  * 3: 3-6 months
  * 6: 6-9 months
  * 9: 9-12 months
@@ -57,7 +58,7 @@ export const productData: productDataType[] = [
     price: 390,
     forWhom: 'baby boys',
     height: ['60'],
-    age: ['1', '3', '6', '9'],
+    age: ['0', '3', '6', '9'],
     description: 'this is for football fans',
     images: [
       '/product_images/c02-1.JPG',
@@ -73,7 +74,7 @@ export const productData: productDataType[] = [
     subCategory: null,
     price: 1780,
     forWhom: 'baby boys and girls',
-    age: ['1', '3', '6', '9', '12', '24'],
+    age: ['0', '3', '6', '9', '12', '24'],
     description: 'this is t01 toy description',
     featured: true,
     images: [

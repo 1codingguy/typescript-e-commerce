@@ -20,7 +20,6 @@ export const links = [
   },
 ]
 
-
 export const services = [
   {
     id: 1,
@@ -40,4 +39,23 @@ export const services = [
     title: 'accessories',
     text: 'accessories text',
   },
+]
+
+export const ageCategories = [
+  { categoryKey: '0', categoryValue: '0-3 months' },
+  { categoryKey: '3', categoryValue: '3-6 months' },
+  { categoryKey: '6', categoryValue: '6-9 months' },
+  { categoryKey: '9', categoryValue: '9-12 months' },
+  { categoryKey: '12', categoryValue: '12-24 months' },
+  { categoryKey: '24', categoryValue: '24 months +' },
+]
+
+export const heightCategories =[
+  {categoryKey: '50', categoryValue: '50-59 cm'},
+  {categoryKey: '60', categoryValue: '60-69 cm'},
+  {categoryKey: '70', categoryValue: '70-79 cm'},
+  {categoryKey: '80', categoryValue: '80-89 cm'},
+  {categoryKey: '90', categoryValue: '90-99 cm'},
+  {categoryKey: '100', categoryValue: '100-109 cm'},
+  {categoryKey: '110', categoryValue: '110 cm +'},
 ]
