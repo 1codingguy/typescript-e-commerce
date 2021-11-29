@@ -280,7 +280,6 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    text-transform: capitalize;
     column-gap: 0.5rem;
     font-size: 1rem;
   }

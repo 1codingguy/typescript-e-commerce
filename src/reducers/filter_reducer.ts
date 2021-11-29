@@ -11,7 +11,7 @@ import {
 import { initialStateType } from '../context/filter_context'
 import { productDataType } from '../utils/productData'
 
-const filter_reducer = (state: initialStateType, action: any) => {
+const filter_reducer = (state: initialStateType, action: {type: any, payload?: any}) => {
   if (action.type === LOAD_PRODUCTS) {
     const maxPrice = Math.max(
       ...action.payload.map((item: productDataType) => item.price)

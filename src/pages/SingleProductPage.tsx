@@ -5,7 +5,7 @@ import { formatPrice } from '../utils/helpers'
 import { ProductImages, Loading, PageHero, AddToCart } from '../components'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { productDataType } from '../utils/productData'
+// import { productDataType } from '../utils/productData'
 
 const SingleProductPage = () => {
   const { id } = useParams<{ id: string }>()

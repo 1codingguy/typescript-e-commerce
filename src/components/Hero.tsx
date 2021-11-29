@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import hero from '../assets/hero.jpg'
-import { productData } from '../utils/productData'
+// import { productData } from '../utils/productData'
 
 const Hero = () => {
   return (
