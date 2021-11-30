@@ -5,8 +5,47 @@ import AmountButtons from './AmountButtons'
 import { FaTrash } from 'react-icons/fa'
 import { cartType, useCartContext } from '../context/cart_context'
 
-const CartItem: React.FC<{cartItem: cartType}> = ({cartItem}) => {
-  return <h4>cart item</h4>
+const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
+  const { id, image, name, color, price, amount } = cartItem
+
+  const { removeItem, toggleAmount } = useCartContext()
+
+  const increase: () => void = () => {
+    toggleAmount(id, 'inc')
+  }
+  const decrease: () => void = () => {
+    toggleAmount(id, 'dec')
+  }
+
+  return (
+    <Wrapper>
+      {/* item column */}
+      <div className='title'>
+        <img src={image} alt={name} />
+        <div>
+          <h5 className='name'>{name}</h5>
+          {/* decide later if every item has a color prop */}
+          <p className='color'>
+            color: <span style={{ background: color }}></span>
+          </p>
+          <h5 className='price-small'>{formatPrice(price)}</h5>
+        </div>
+      </div>
+      {/* price column */}
+      <div className='price'>{formatPrice(price)}</div>
+      {/* quantity column */}
+      <AmountButtons amount={amount} increase={increase} decrease={decrease} />
+      {/* subtotal column */}
+      <h5 className='subtotal'>{formatPrice(price * amount)}</h5>
+      <button
+        type='button'
+        className='remove-btn'
+        onClick={() => removeItem(id)}
+      >
+        <FaTrash />
+      </button>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.article`

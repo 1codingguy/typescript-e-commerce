@@ -3,10 +3,10 @@ import reducer from '../reducers/cart_reducer'
 import { productDataType } from '../utils/productData'
 import {
   ADD_TO_CART,
-  //   REMOVE_CART_ITEM,
-  //   TOGGLE_CART_ITEM_AMOUNT,
-    CLEAR_CART,
-  //   COUNT_CART_TOTALS,
+  REMOVE_CART_ITEM,
+  TOGGLE_CART_ITEM_AMOUNT,
+  CLEAR_CART,
+  COUNT_CART_TOTALS,
 } from '../actions'
 
 export type cartType = {
@@ -30,7 +30,7 @@ export type initialStateType = {
     singleProduct: productDataType | {}
   ) => void
   removeItem: (id: string) => void
-  toggleAmount: (id: string, value: number) => void
+  toggleAmount: (id: string, value: string) => void
   clearCart: () => void
 }
 
@@ -70,16 +70,22 @@ export const CartProvider: React.FC = ({ children }) => {
     })
   }
 
-  const removeItem = (id: string) => {}
-
-  const toggleAmount = (id: string, value: number) => {}
-
-  const clearCart = () => {
-    dispatch({type: CLEAR_CART})
+  const removeItem = (id: string) => {
+    dispatch({ type: REMOVE_CART_ITEM, payload: id })
   }
 
+  const toggleAmount = (id: string, value: string) => {
+    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } })
+  }
+
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART })
+  }
+
+  // when the cart changes, store the changes to localStorage + re-calculate total amount in cart
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart))
+    dispatch({type: COUNT_CART_TOTALS})
   }, [state.cart])
 
   return (
