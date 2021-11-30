@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 import { productDataType } from '../utils/productData'
-// import { useCartContext } from '../context/cart_context'
+import { useCartContext } from '../context/cart_context'
 import AmountButtons from './AmountButtons'
 
 const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
   singleProduct,
 }) => {
+  const { addToCart } = useCartContext()
   // need the number of stock here as well after setting up in productData array
   const { id, colors } = { ...singleProduct }
 
@@ -61,7 +62,11 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
           increase={increaseAmount}
           decrease={decreaseAmount}
         />
-        <Link to='/cart' className='btn'>
+        <Link
+          to='/cart'
+          className='btn'
+          onClick={() => addToCart(id, mainColor, amount, singleProduct)}
+        >
           add to cart
         </Link>
       </div>

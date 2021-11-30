@@ -9,7 +9,7 @@ import {
   SingleProduct,
   Checkout,
   Products,
-  //   Cart,
+  Cart,
 } from './pages'
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
         <Route exact path='/about'>
           <About />
         </Route>
-        {/* <Route exact path='/cart'>
+        <Route exact path='/cart'>
           <Cart />
-        </Route> */}
+        </Route>
         <Route exact path='/products'>
           <Products />
         </Route>

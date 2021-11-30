@@ -4,5 +4,5 @@ import About from './AboutPage'
 import Checkout from './CheckoutPage'
 import SingleProduct from './SingleProductPage'
 import Products from './ProductsPage'
-
-export { Error, Home, About, Checkout, SingleProduct, Products }
+import Cart from './CartPage'
+export { Error, Home, About, Checkout, SingleProduct, Products, Cart }
