@@ -14,12 +14,12 @@ import Filters from './Filters'
 import ProductList from './ProductList'
 import Sort from './Sort'
 import CartContent from './CartContent'
+import StripeCheckout from './StripeCheckout'
 
 
 // import CartButtons from './CartButtons'
 // import Error from './Error'
 // import Stars from './Stars'
-// import StripeCheckout from './StripeCheckout'
 export {
   Navbar,
   Footer,
@@ -37,9 +37,9 @@ export {
   ProductList,
   Sort,
   CartContent,
+  StripeCheckout,
 
   // CartButtons,
   // Error,
   // Stars,
-  // StripeCheckout,
 }

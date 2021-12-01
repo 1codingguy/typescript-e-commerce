@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
 import { formatPrice } from '../utils/helpers'
 import { ProductImages, Loading, PageHero, AddToCart } from '../components'
@@ -15,7 +16,8 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(id)
-  }, [])
+    // eslint-disable-next-line
+  }, [id])
 
   if (!singleProduct) {
     return <Loading />

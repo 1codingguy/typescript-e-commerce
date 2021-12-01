@@ -37,6 +37,7 @@ const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
       <AmountButtons amount={amount} increase={increase} decrease={decrease} />
       {/* subtotal column */}
       <h5 className='subtotal'>{formatPrice(price * amount)}</h5>
+      {/* remove icon */}
       <button
         type='button'
         className='remove-btn'

@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Product from './Product'
 // import Loading from './Loading'
@@ -20,6 +20,9 @@ const FeaturedProducts = () => {
             <Product key={product.id} product={product} />
           ))}
       </div>
+      <Link to='/products' className='btn'>
+        all products
+      </Link>
     </Wrapper>
   )
 }
