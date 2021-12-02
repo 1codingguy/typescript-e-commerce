@@ -1,8 +1,8 @@
 {
   "version": 3,
   "sources": ["../../../../../coding-guy/Documents/GitHub/typescript-e-commerce/functions/create-payment-intent.ts"],
-  "sourceRoot": "C:/Users/CODING~1/AppData/Local/Temp/tmp-11276-w5bSS0G8KQ11",
-  "sourcesContent": ["//[domain]/.netlify/functions/create-payment-intent\r\n\r\nexports.handler = async function (event, context) {\r\n  if (event.body) {\r\n    const { cart, totalAmount } = JSON.parse(event.body)\r\n\r\n    console.log(cart)\r\n    return {\r\n      statusCode: 200,\r\n      body: JSON.stringify(cart),\r\n    }\r\n  } else {\r\n    return {\r\n      statusCode: 200,\r\n      body: 'create-payment-intent',\r\n    }\r\n  }\r\n}\r\n"],
-  "mappings": ";AAEA,QAAQ,UAAU,eAAgB,OAAO,SAAS;AAChD,MAAI,MAAM,MAAM;AACd,UAAM,EAAE,MAAM,gBAAgB,KAAK,MAAM,MAAM;AAE/C,YAAQ,IAAI;AACZ,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU;AAAA;AAAA,SAElB;AACL,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM;AAAA;AAAA;AAAA;",
+  "sourceRoot": "C:/Users/CODING~1/AppData/Local/Temp/tmp-1324-4dk0N8vbtL2E",
+  "sourcesContent": ["//[domain]/.netlify/functions/create-payment-intent\r\n\r\nexports.handler = async function (event, context) {\r\n  // if there's event.body object then it's a POST request, otherwise it's a GET request\r\n  if (event.body) {\r\n    const { cart, totalAmount } = JSON.parse(event.body)\r\n\r\n    console.log(cart)\r\n    return {\r\n      statusCode: 200,\r\n      body: JSON.stringify(cart),\r\n    }\r\n  } else {\r\n    return {\r\n      statusCode: 200,\r\n      body: 'create-payment-intent',\r\n    }\r\n  }\r\n}\r\n"],
+  "mappings": ";AAEA,QAAQ,UAAU,eAAgB,OAAO,SAAS;AAEhD,MAAI,MAAM,MAAM;AACd,UAAM,EAAE,MAAM,gBAAgB,KAAK,MAAM,MAAM;AAE/C,YAAQ,IAAI;AACZ,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU;AAAA;AAAA,SAElB;AACL,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM;AAAA;AAAA;AAAA;",
   "names": []
 }
