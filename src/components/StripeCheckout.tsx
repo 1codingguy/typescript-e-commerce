@@ -21,7 +21,86 @@ if (process.env.REACT_APP_STRIPE_PUBLIC_KEY) {
 }
 
 const CheckoutForm = () => {
-  return <h4>hello from Stripe Checkout </h4>
+  const { cart, totalAmount, clearCart } = useCartContext()
+  const history = useHistory()
+  // copy from stripe
+  const [succeeded, setSucceeded] = useState(false)
+  const [error, setError] = useState(null)
+  const [processing, setProcessing] = useState(false)
+  const [disabled, setDisabled] = useState(false)
+  const [clientSecret, setClientSecret] = useState('')
+  const stripe = useStripe()
+  const element = useElements()
+
+  const createPaymentIntent = async () => {
+    try {
+      const data = await axios.post(
+        '/.netlify/functions/create-payment-intent',
+        JSON.stringify({ cart, totalAmount })
+      )
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  // send cart, totalAmount to netlify function when component mounts
+  useEffect(() => {
+    createPaymentIntent()
+    // eslint-disable-next-line
+  }, [])
+
+  const handleChange = async (event: any) => {}
+  const handleSubmit = async (event: any) => {}
+
+  return (
+    <div>
+      <form id='payment-form' onSubmit={handleSubmit}>
+        <CardElement
+          id='card-element'
+          options={cardStyle}
+          onChange={handleChange}
+        />
+      </form>
+      <button disabled={processing || disabled || succeeded}>
+        <span id='button-text'>
+          {processing ? <div className='spinner' id='spinner' /> : 'Pay'}
+        </span>
+      </button>
+      {/* Show any error that happens when processing the payment */}
+      {error ?? (
+        <div className='card-error' role='alert'>
+          {error}
+        </div>
+      )}
+      {/* Show a success message upon completion */}
+      <p className={succeeded ? 'result-message' : 'result-message hidden'}>
+        Payment succeeded, see the result in your
+        <a href='https://dashboard.stripe.com/test/payments'>
+          Stripe dashboard.
+        </a>
+        Refresh the page to pay again
+      </p>
+    </div>
+  )
+}
+
+const cardStyle = {
+  style: {
+    base: {
+      color: '#32325d',
+      fontFamily: 'Arial, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#32325d',
+      },
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a',
+    },
+  },
 }
 
 const StripeCheckout = () => {
