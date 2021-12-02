@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../coding-guy/Documents/GitHub/typescript-e-commerce/functions/hello.ts"],
-  "sourceRoot": "C:/Users/CODING~1/AppData/Local/Temp/tmp-1324-N3jcimJQC8lH",
+  "sourceRoot": "C:/Users/CODING~1/AppData/Local/Temp/tmp-13192-j5Nwud8k6Mru",
   "sourcesContent": ["// to access this function on dev server with the following path\r\n//[domain]/.netlify/functions/hello\r\n\r\nexports.handler = async function (event, context) {\r\n  return {\r\n    statusCode: 200,\r\n    body: 'hello world'\r\n  }\r\n}"],
   "mappings": ";AAGA,QAAQ,UAAU,eAAgB,OAAO,SAAS;AAChD,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM;AAAA;AAAA;",
   "names": []
