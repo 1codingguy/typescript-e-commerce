@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { FaCheck } from 'react-icons/fa'
-import { productDataType } from '../utils/productData'
-import { useCartContext } from '../context/cart_context'
-import AmountButtons from './AmountButtons'
+import { productDataType } from '../../utils/productData'
+import { useCartContext } from '../../context/cart_context'
+import AmountButtons from '../AmountButtons'
+import { AddToCartColors } from './AddToCartColors'
 
 const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
   singleProduct,
@@ -29,33 +29,11 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
 
   return (
     <Wrapper>
-      {colors && (
-        <div className='colors'>
-          <span>colors :</span>
-          <div>
-            {colors?.map((color, index) => {
-              return (
-                <button
-                  key={`${color}_${index}`}
-                  style={{ background: color }}
-                  className={
-                    index === colorIndex ? 'color-btn active' : 'color-btn'
-                  }
-                  onClick={() => setColorIndex(index)}
-                >
-                  {colorIndex === index && (
-                    <FaCheck
-                      style={
-                        color === '#FFFFFF' ? { color: 'black' } : undefined
-                      }
-                    />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      )}
+      <AddToCartColors
+        colors={colors}
+        colorIndex={colorIndex}
+        setColorIndex={setColorIndex}
+      />
       <div className='btn-container'>
         <AmountButtons
           amount={amount}
@@ -73,6 +51,8 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
     </Wrapper>
   )
 }
+
+export default AddToCart
 
 const Wrapper = styled.section`
   margin-top: 2rem;
@@ -121,4 +101,3 @@ const Wrapper = styled.section`
     width: 140px;
   }
 `
-export default AddToCart
