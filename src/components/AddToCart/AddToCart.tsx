@@ -12,10 +12,8 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
   const { addToCart } = useCartContext()
   // need the number of stock here as well after setting up in productData array
   const { id, colors } = { ...singleProduct }
-
   const [colorIndex, setColorIndex] = useState(0)
   const mainColor = colors?.[colorIndex]
-
   const [amount, setAmount] = useState(1)
 
   // if there's stock variable, add logic to allow adding the amount === stock

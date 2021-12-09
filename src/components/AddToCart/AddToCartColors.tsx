@@ -23,6 +23,7 @@ export const AddToCartColors: React.FC<{
                   onClick={() => setColorIndex(index)}
                 >
                   {colorIndex === index && (
+                    // check mark on currently selected color
                     <FaCheck
                       style={
                         color === '#FFFFFF' ? { color: 'black' } : undefined

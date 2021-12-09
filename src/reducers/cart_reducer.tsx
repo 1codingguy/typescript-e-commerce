@@ -12,17 +12,13 @@ const cart_reducer = (
   action: { type: any; payload?: any }
 ) => {
   if (action.type === ADD_TO_CART) {
-    console.log(action.payload)
-
     const { id, color, amount, singleProduct } = action.payload
     // address the color might not present problem later, id+color
     const tempItem = state.cart.find(item => item.id === id)
 
-    console.log(tempItem)
-
     if (tempItem) {
       const tempCart = state.cart.map(cartItem => {
-        // it should be id+color or color here, there's no point of
+        // Original version is id+color or color here
         if (cartItem.id === id) {
           const newAmount = tempItem.amount + amount
           return { ...cartItem, amount: newAmount }
@@ -55,7 +51,6 @@ const cart_reducer = (
   }
   if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
     const { id, value } = action.payload
-
     const tempCart = state.cart.map(cartItem => {
       if (cartItem.id === id) {
         if (value === 'inc') {
