@@ -1,6 +1,6 @@
 import Navbar from './Navbar/Navbar'
 import Footer from './Footer'
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar/Sidebar'
 import PageHero from './PageHero'
 import Hero from './Hero'
 import Services from './Services'

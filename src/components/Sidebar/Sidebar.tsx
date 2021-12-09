@@ -1,12 +1,9 @@
 import React from 'react'
-import logo from '../assets/logo_word.jpg'
-import { Link } from 'react-router-dom'
-import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
-import CartButtons from './CartButtons'
-import { NavLinks } from "./Navbar/NavLinks"
-import { useProductsContext } from '../context/products_context'
-// import { useUserContext } from '../context/user_context'
+import CartButtons from '../CartButtons'
+import { NavLinks } from '../Navbar/NavLinks'
+import { useProductsContext } from '../../context/products_context'
+import { SidebarHeader } from './SidebarHeader'
 
 const Sidebar = () => {
   const { isSidebarOpen } = useProductsContext()
@@ -22,20 +19,6 @@ const Sidebar = () => {
 }
 
 export default Sidebar
-
-const SidebarHeader = () => {
-  const { closeSidebar } = useProductsContext()
-  return (
-    <div className='sidebar-header'>
-      <Link to='/' onClick={closeSidebar}>
-        <img src={logo} className='logo' alt='cute buddy' />
-      </Link>
-      <button type='button' className='close-btn' onClick={closeSidebar}>
-        <FaTimes />
-      </button>
-    </div>
-  )
-}
 
 const SidebarContainer = styled.div`
   text-align: center;
