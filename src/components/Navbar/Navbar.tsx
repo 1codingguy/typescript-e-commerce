@@ -1,13 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../assets/logo_word.jpg'
-import { FaBars } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { links } from '../utils/constants'
-import CartButtons from './CartButtons'
-import { useProductsContext } from '../context/products_context'
-// import { useProductsContext } from '../context/products_context'
-// import { useUserContext } from '../context/user_context'
+import CartButtons from '../CartButtons'
+import { Logo } from './Logo'
+import { MenuIcon } from './MenuIcon'
+import { NavLinks } from './NavLinks'
 
 const Nav = () => {
   return (
@@ -24,48 +20,7 @@ const Nav = () => {
   )
 }
 
-const Logo = () => {
-  return (
-    <Link to='/'>
-      <img src={logo} alt='cute buddy' />
-    </Link>
-  )
-}
-
-const MenuIcon = () => {
-  const { openSidebar } = useProductsContext()
-  return (
-    <button type='button' className='nav-toggle' onClick={openSidebar}>
-      <FaBars />
-    </button>
-  )
-}
-
-export const NavLinks: React.FC<{ className: string; isSidebar?: boolean }> = ({
-  className,
-  isSidebar,
-}) => {
-  const { closeSidebar } = useProductsContext()
-  return (
-    <ul className={className}>
-      {links.map(({ id, text, url }) => {
-        return (
-          <li key={id} onClick={isSidebar ? closeSidebar : undefined}>
-            <Link to={url}>{text}</Link>
-          </li>
-        )
-      })}
-      {/* 'isSidebar' only available in sidebar, not in Navbar */}
-      {isSidebar && (
-        <li>
-          <Link to='/checkout' onClick={closeSidebar}>
-            checkout
-          </Link>{' '}
-        </li>
-      )}
-    </ul>
-  )
-}
+export default Nav
 
 const NavContainer = styled.nav`
   height: 5rem;
@@ -134,5 +89,3 @@ const NavContainer = styled.nav`
     }
   }
 `
-
-export default Nav

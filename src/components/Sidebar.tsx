@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import CartButtons from './CartButtons'
-import { NavLinks } from './Navbar'
+import { NavLinks } from "./Navbar/NavLinks"
 import { useProductsContext } from '../context/products_context'
 // import { useUserContext } from '../context/user_context'
 
