@@ -1,35 +1,19 @@
-// import React from 'react'
 import styled from 'styled-components'
-import { services } from '../utils/constants'
+import { ServicesCards } from './ServicesCards'
+import { ServicesHeader } from './ServicesHeader'
 
 const Services = () => {
   return (
     <Wrapper>
       <div className='section-center'>
-        <article className='header'>
-          <h3>
-            high quality <br /> baby product
-          </h3>
-          <p>
-            we offer well priced, high quality branded baby products from Japan,
-            USA and Europe. All items are in limited quantity.
-          </p>
-        </article>
-        <div className='services-center'>
-          {services.map(({ id, icon, title, text }) => {
-            return (
-              <article key={id} className='service'>
-                <span className='icon'>{icon}</span>
-                <h4>{title}</h4>
-                <p>{text}</p>
-              </article>
-            )
-          })}
-        </div>
+        <ServicesHeader />
+        <ServicesCards />
       </div>
     </Wrapper>
   )
 }
+
+export default Services
 
 const Wrapper = styled.section`
   h3,
@@ -94,4 +78,3 @@ const Wrapper = styled.section`
     }
   }
 `
-export default Services
