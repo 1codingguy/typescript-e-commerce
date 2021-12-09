@@ -1,31 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ContactContent } from './ContactContent'
+import { ContactForm } from './ContactForm'
+import { ContactHeader } from './ContactHeader'
 
 const Contact = () => {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3>Join our newsletter for new product notification!</h3>
+        <ContactHeader />
         <div className='content'>
-          <p>
-            Stay informed for new product arrival and get discount by
-            subscribing our newsletter.
-          </p>
-          <form className='contact-form'>
-            <input
-              type='email'
-              className='form-input'
-              placeholder='enter email'
-            />
-            <button type='submit' className='submit-btn'>
-              subscribe
-            </button>
-          </form>
+          <ContactContent />
+          <ContactForm />
         </div>
       </div>
     </Wrapper>
   )
 }
+
+export default Contact
+
 const Wrapper = styled.section`
   padding: 5rem 0;
   h3 {
@@ -90,5 +84,3 @@ const Wrapper = styled.section`
     padding: 15rem 0;
   }
 `
-
-export default Contact
