@@ -49,8 +49,10 @@ export const ProductsProvider: React.FC = ({ children }) => {
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: id })
   }
 
+  // fetch all the product data when the app starts
+  // use GET_PRODUCTS_SUCCESS now because data is local, no loading success or failure
+  // but change after setting up CMS
   useEffect(() => {
-    // fetch all the product data when the app starts
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: productData })
   }, [])
 
@@ -62,7 +64,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
     </ProductsContext.Provider>
   )
 }
-// make sure use
+
 export const useProductsContext = () => {
   return useContext(ProductsContext)
 }

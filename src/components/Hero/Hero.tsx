@@ -1,31 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import hero from '../assets/hero.jpg'
-// import { productData } from '../utils/productData'
+import { HeroWords } from './HeroWords'
+import { HeroImage } from './HeroImage'
+import { ShopNowButton } from './ShopNowButton'
 
 const Hero = () => {
   return (
     <Wrapper className='section-center'>
       <article className='content'>
-        <h1>
-          high quality <br />
-          product for your little one
-        </h1>
-        <p>Japanese, USA and European brands</p>
-        <p>New arrivals every week</p>
-        <Link to='/products' className='btn hero-btn'>
-          shop now
-        </Link>
+        <HeroWords />
+        <ShopNowButton />
       </article>
-
-      <article className='img-container'>
-        <img src={hero} alt='hero' className='main-img' />
-        {/* insert one more image here */}
-      </article>
+      <HeroImage />
     </Wrapper>
   )
 }
+
+export default Hero
 
 const Wrapper = styled.section`
   min-height: 60vh;
@@ -88,5 +79,3 @@ const Wrapper = styled.section`
     }
   }
 `
-
-export default Hero
