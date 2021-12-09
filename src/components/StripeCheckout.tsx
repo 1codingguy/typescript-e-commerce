@@ -10,7 +10,7 @@ import {
 import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { formatPrice } from '../utils/helpers'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 // Type supposed to be: Promise<Stripe | null>,
 // but dunno where to install the required type so use any instead

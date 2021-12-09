@@ -15,16 +15,25 @@ const CartContent = () => {
         return <CartItem key={cartItem.id} cartItem={cartItem} />
       })}
       <hr />
-      <div className="link-container">
-        <Link to='/products' className='link-btn'>
-          continue shopping
-        </Link>
-        <button type='button' className='link-btn clear-btn' onClick={clearCart}>clear shopping cart</button>
-      </div>
+      <Buttons clearCart={clearCart} />
       <CartTotals />
     </Wrapper>
   )
 }
+
+const Buttons: React.FC<{ clearCart: () => void }> = ({ clearCart }) => {
+  return (
+    <div className='link-container'>
+      <Link to='/products' className='link-btn'>
+        continue shopping
+      </Link>
+      <button type='button' className='link-btn clear-btn' onClick={clearCart}>
+        clear shopping cart
+      </button>
+    </div>
+  )
+}
+
 const Wrapper = styled.section`
   .link-container {
     display: flex;
