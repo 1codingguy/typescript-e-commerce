@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sanity/client": "^2.23.1",
     "@stripe/react-stripe-js": "^1.2.2",
     "@stripe/stripe-js": "^1.11.0",
     "@testing-library/jest-dom": "^5.15.0",
