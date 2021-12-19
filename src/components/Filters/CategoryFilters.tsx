@@ -8,7 +8,7 @@ export const CategoryFilters = () => {
     allProducts,
     filters: { category },
   } = useFilterContext()
-  const uniqueCategories = getUniqueValues(allProducts, 'category')
+  const uniqueCategories = getUniqueValues(allProducts, 'categories')
 
   return (
     <div className='form-control'>

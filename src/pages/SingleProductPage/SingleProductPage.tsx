@@ -5,20 +5,31 @@ import { ProductImages, Loading, PageHero } from '../../components'
 import styled from 'styled-components'
 import { BackToProductsButton } from './BackToProductsButton'
 import { SingleProductContent } from './SingleProductContent'
+import ErrorPage from '../ErrorPage'
 
 const SingleProductPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { singleProduct, fetchSingleProduct } = useProductsContext()
+  const {
+    singleProduct,
+    fetchSingleProduct,
+    singleProductLoading,
+    singleProductError,
+  } = useProductsContext()
 
   const { name, images } = { ...singleProduct }
 
   useEffect(() => {
+    // this console.log confirms page refresh doesn't run the useEffect
+    // console.log('running useEffect in SingleProductPage')
     fetchSingleProduct(id)
     // eslint-disable-next-line
   }, [id])
 
-  if (!singleProduct) {
+  if (singleProductLoading) {
     return <Loading />
+  }
+  if (singleProductError) {
+    return <ErrorPage />
   } else {
     return (
       <Wrapper>

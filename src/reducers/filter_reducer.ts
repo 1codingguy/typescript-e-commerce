@@ -108,7 +108,7 @@ const filter_reducer = (state: initialStateType, action: {type: any, payload?: a
     // category
     if (category !== 'all') {
       tempProducts = tempProducts.filter(product => {
-        return product.category === category
+        return product.categories === category
       })
     }
     // forWhom

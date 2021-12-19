@@ -64,24 +64,34 @@ export const API_ENDPOINT =
   'https://bqk6gkzk.api.sanity.io/v1/graphql/production/default'
 
 export const QUERY = `
-  {
-    allProduct{
-      name
-      _id
-      category{
-        category
-      }
-      images{
-        asset{
-          url
-        }
-      }
-      age{
-        age
-      }
-      height{
-        height
+{
+  allProduct {
+    _id
+    name
+    categories {
+      categories
+    }
+    clothingCategories {
+      clothingCategories
+    }
+    price
+    forWhom {
+      forWhom
+    }
+    height {
+      height
+    }
+    age {
+      age
+    }
+    description
+    featured
+    images {
+      asset {
+        url
       }
     }
+    colors
   }
-  `
+}
+`
