@@ -12,6 +12,8 @@ import {
 } from '../actions'
 import { productData } from '../utils/productData'
 import { productDataType } from '../utils/productData'
+import { API_ENDPOINT, QUERY } from '../utils/constants'
+import axios from 'axios'
 
 export type initialStateType = {
   isSidebarOpen: boolean
@@ -59,37 +61,15 @@ export const ProductsProvider: React.FC = ({ children }) => {
   // test GraphQL query
   // get GraphQL data when mount, console log the result for now
 
-  const TEST_QUERY = `
-  {
-    allProduct{
-      name
-      _id
-      category{
-        category
-      }
-      images{
-        asset{
-          url
-        }
-      }
-      age{
-        age
-      }
-      height{
-        height
-      }
-    }
-  }
-  `
-
   useEffect(() => {
-    fetch('https://bqk6gkzk.api.sanity.io/v1/graphql/production/default', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: TEST_QUERY }),
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
+    const fetchData = async () => {
+      const queryResult = await axios.post(API_ENDPOINT, { query: QUERY })
+
+      const result = queryResult.data.data
+      console.log(result)
+    }
+
+    fetchData()
   }, [])
 
   return (

@@ -22,7 +22,7 @@ export type productDataType = {
   id: string
   name: string
   category: string
-  subCategory: string | null
+  subCategory: string | null // add in schema
   price: number
   forWhom: string
   height?: string[]

@@ -9,40 +9,25 @@ const product = {
       type: 'string',
     },
     {
-      name: 'category',
-      title: 'Category',
+      name: 'categories',
       type: 'reference',
-      to: [{ type: 'category' }],
+      to: [{ type: 'categories' }],
     },
+    // eq to subCategory
     {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    },
-    {
-      name: 'forWhom',
-      title: 'For Whom',
+      name: 'clothingCategories',
       type: 'reference',
-      to: [{ type: 'forWhom' }],
+      to: [{ type: 'clothingCategories' }],
     },
     {
       name: 'price',
       type: 'number',
     },
     {
-      name: 'featured',
-      title: 'Featured Product',
-      type: 'boolean',
-    },
-    {
-      name: 'age',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'age' }],
-        },
-      ],
+      name: 'forWhom',
+      title: 'For Whom',
+      type: 'reference',
+      to: [{ type: 'forWhom' }],
     },
     {
       name: 'height',
@@ -55,10 +40,43 @@ const product = {
       ],
     },
     {
+      name: 'age',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'age' }],
+        },
+      ],
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'featured',
+      title: 'Featured Product',
+      type: 'boolean',
+    },
+    {
       name: 'images',
       title: 'Images',
       type: 'array',
-      of: [{ type: 'image' }],
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          }
+        },
+      ],
+    },
+    // hex code color in string
+    {
+      name: 'colors',
+      type: 'array',
+      of: [{ type: 'string' }],
     },
   ],
 }

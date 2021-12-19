@@ -50,12 +50,38 @@ export const ageCategories = [
   { categoryKey: '24', categoryValue: '24 months +' },
 ]
 
-export const heightCategories =[
-  {categoryKey: '50', categoryValue: '50-59 cm'},
-  {categoryKey: '60', categoryValue: '60-69 cm'},
-  {categoryKey: '70', categoryValue: '70-79 cm'},
-  {categoryKey: '80', categoryValue: '80-89 cm'},
-  {categoryKey: '90', categoryValue: '90-99 cm'},
-  {categoryKey: '100', categoryValue: '100-109 cm'},
-  {categoryKey: '110', categoryValue: '110 cm +'},
+export const heightCategories = [
+  { categoryKey: '50', categoryValue: '50-59 cm' },
+  { categoryKey: '60', categoryValue: '60-69 cm' },
+  { categoryKey: '70', categoryValue: '70-79 cm' },
+  { categoryKey: '80', categoryValue: '80-89 cm' },
+  { categoryKey: '90', categoryValue: '90-99 cm' },
+  { categoryKey: '100', categoryValue: '100-109 cm' },
+  { categoryKey: '110', categoryValue: '110 cm +' },
 ]
+
+export const API_ENDPOINT =
+  'https://bqk6gkzk.api.sanity.io/v1/graphql/production/default'
+
+export const QUERY = `
+  {
+    allProduct{
+      name
+      _id
+      category{
+        category
+      }
+      images{
+        asset{
+          url
+        }
+      }
+      age{
+        age
+      }
+      height{
+        height
+      }
+    }
+  }
+  `
