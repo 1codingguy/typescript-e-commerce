@@ -56,6 +56,42 @@ export const ProductsProvider: React.FC = ({ children }) => {
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: productData })
   }, [])
 
+  // test GraphQL query
+  // get GraphQL data when mount, console log the result for now
+
+  const TEST_QUERY = `
+  {
+    allProduct{
+      name
+      _id
+      category{
+        category
+      }
+      images{
+        asset{
+          url
+        }
+      }
+      age{
+        age
+      }
+      height{
+        height
+      }
+    }
+  }
+  `
+
+  useEffect(() => {
+    fetch('https://bqk6gkzk.api.sanity.io/v1/graphql/production/default', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: TEST_QUERY }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+  }, [])
+
   return (
     <ProductsContext.Provider
       value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}
