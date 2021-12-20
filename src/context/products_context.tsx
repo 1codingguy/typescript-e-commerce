@@ -61,11 +61,10 @@ export const ProductsProvider: React.FC = ({ children }) => {
       const singleProduct = state.allProducts.filter(
         (product: productDataType) => product.id === id
       )[0]
-      dispatch({type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct})
+      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
     } catch (error) {
-      dispatch({type: GET_SINGLE_PRODUCT_ERROR})
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
     }
-    
   }
 
   useEffect(() => {
@@ -73,10 +72,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_BEGIN })
       try {
         const queryResult = await axios.post(API_ENDPOINT, { query: QUERY })
-        console.log(queryResult)
         const result = queryResult.data.data.allProduct
-        console.log(result)
-
         dispatch({ type: GET_PRODUCTS_SUCCESS, payload: result })
       } catch (error) {
         dispatch({ type: GET_PRODUCTS_ERROR })
@@ -84,28 +80,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
     }
     fetchProducts()
   }, [])
-
-  // ----------- fetch product of local data -----------
-  // fetch all the product data when the app starts
-  // use GET_PRODUCTS_SUCCESS now because data is local, no loading success or failure
-  // but change after setting up CMS
-  // useEffect(() => {
-  //   dispatch({ type: GET_PRODUCTS_SUCCESS, payload: productData })
-  // }, [])
-
-  // ----------- test GraphQL query with axios -----------
-  // get GraphQL data when mount, console log the result for now
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const queryResult = await axios.post(API_ENDPOINT, { query: QUERY })
-  //     console.log(queryResult)
-  //     const result = queryResult.data.data
-  //     console.log(result)
-  //   }
-
-  //   fetchData()
-  // }, [])
 
   return (
     <ProductsContext.Provider
