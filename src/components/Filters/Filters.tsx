@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { SearchFilters } from './SearchFilters'
 import { CategoryFilters } from './CategoryFilters'
@@ -7,11 +7,19 @@ import { PriceFilters } from './PriceFilters'
 import { AgeFilters } from './AgeFilters'
 import { HeightFilters } from './HeightFilters'
 import { ClearFilters } from './ClearFilters'
+import { FiltersButton } from './FiltersButton'
 
 const Filters = () => {
+  const [showFilters, setShowFilters] = useState(false)
+
   return (
     <Wrapper>
-      <div className='content'>
+      <FiltersButton
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+      />
+
+      <div className={showFilters ? 'show-filters content' : 'content'}>
         <form onSubmit={e => e.preventDefault()}>
           <SearchFilters />
           <CategoryFilters />
@@ -29,6 +37,13 @@ const Filters = () => {
 export default Filters
 
 const Wrapper = styled.section`
+
+  .content {
+    display: none;
+  }
+  .show-filters {
+    display: block;
+  }
   .form-control {
     margin-bottom: 1.25rem;
     h5 {
@@ -121,6 +136,7 @@ const Wrapper = styled.section`
   }
   @media (min-width: 768px) {
     .content {
+      display: block;
       position: sticky;
       top: 1rem;
     }
