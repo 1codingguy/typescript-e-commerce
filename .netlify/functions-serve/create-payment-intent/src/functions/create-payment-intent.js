@@ -3447,13 +3447,13 @@ exports.handler = async function(event, context) {
     const calculateTotal = (cart2) => {
       return cart2.reduce((total, cartItem) => {
         const { price, amount } = cartItem;
-        total.totalAmount += amount * price;
+        total += amount * price;
         return total;
       }, 0);
     };
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: totalAmount,
+        amount: calculateTotal(cart),
         currency: "thb"
       });
       return {

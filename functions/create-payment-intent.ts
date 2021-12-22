@@ -10,21 +10,20 @@ exports.handler = async function (event, context) {
     const { cart, totalAmount } = JSON.parse(event.body)
 
     // take the advice of calculating total amount on server instead of on client
-    // but not sure how to test the result for now
 
     const calculateTotal = cart => {
       return cart.reduce((total, cartItem) => {
         const { price, amount } = cartItem
-        total.totalAmount += amount * price
+        total += amount * price
         return total
       }, 0)
     }
 
     try {
-      // console.log(calculateTotal(cart))
+      
 
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: totalAmount,
+        amount: calculateTotal(cart),
         currency: 'thb',
       })
 
