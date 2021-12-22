@@ -39,6 +39,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else {
+    // if there's no event.body, then it's a GET request
     return {
       statusCode: 200,
       body: 'create-payment-intent',
