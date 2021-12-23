@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { CheckoutForm } from './CheckoutForm'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-// import { useHistory } from 'react-router-dom'
 
 // Type supposed to be: Promise<Stripe | null>,
 // but dunno where to install the required type so use any instead
@@ -15,7 +14,7 @@ if (process.env.REACT_APP_STRIPE_PUBLIC_KEY) {
 
 const StripeCheckout = () => {
   return (
-    <Wrapper>
+    <Wrapper className='section section-center'>
       <Elements stripe={promise}>
         <CheckoutForm />
       </Elements>
@@ -24,8 +23,18 @@ const StripeCheckout = () => {
 }
 
 const Wrapper = styled.section`
+  max-width: 465px;
+
+  @media screen and (max-width: 576px) {
+    padding: 2rem 0;
+    && {
+      form {
+        padding: 20px 10px;
+      }
+    }
+  }
+
   form {
-    width: 30vw;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
       0px 2px 5px 0px rgba(50, 50, 93, 0.1),

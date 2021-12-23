@@ -60,4 +60,12 @@ const Input = styled.input`
   &::placeholder {
     color: var(--clr-primary-9);
   }
+
+  /* to change the background color of auto-fill row in Chrome */
+  && {
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px var(--clr-primary-9) inset;
+      -webkit-text-fill-color: var(--clr-primary-5);
+    }
+  }
 `

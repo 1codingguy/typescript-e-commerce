@@ -4,11 +4,10 @@ import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { formatPrice } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
-import styled from "styled-components"
+import styled from 'styled-components'
 
 // Billing info and style from Stripe YouTube tutorial
 import Row from './Row'
-import FormField from './FormField'
 import BillingDetailsFields from './BillingDetailsFields'
 
 export const CheckoutForm = () => {
@@ -32,7 +31,7 @@ export const CheckoutForm = () => {
         '/.netlify/functions/create-payment-intent',
         JSON.stringify({ cart, totalAmount })
       )
-      console.log(data)
+      // console.log(data)
 
       setClientSecret(data.clientSecret)
     } catch (error) {
@@ -51,17 +50,20 @@ export const CheckoutForm = () => {
     setError(event.error ? event.error.message : '')
   }
 
-  // const BillingDetails = {
-  //   name: 'test',
-  //   email: 'test_email@test.com'
-  // }
-
   const handleSubmit = async (event: any) => {
-
-    console.log(event)
-
     event.preventDefault()
     setProcessing(true)
+
+    const billingDetails = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      address: {
+        city: event.target.city.value,
+        line1: event.target.address.value,
+        state: event.target.state.value,
+        postal_code: event.target.zip.value,
+      },
+    }
 
     const cardElement = elements?.getElement(CardElement)
 
@@ -69,11 +71,11 @@ export const CheckoutForm = () => {
       const payload = await stripe?.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardElement,
-          // billing_details: BillingDetails,
+          billing_details: billingDetails,
         },
       })
 
-      console.log(payload)
+      // console.log(payload)
 
       if (payload && payload.error) {
         setError(`Payment failed `)
@@ -92,47 +94,59 @@ export const CheckoutForm = () => {
 
   return (
     <Wrapper>
-      <h4>please enter your billing details:</h4>
-      <Row>
-        <BillingDetailsFields />
-      </Row>
+      <form id='payment-form' onSubmit={handleSubmit}>
+        <h4>enter billing details:</h4>
+        <Row>
+          <BillingDetailsFields />
+        </Row>
 
-      <h4>please enter your card details:</h4>
-      <Row>
-        <form id='payment-form' onSubmit={handleSubmit}>
+        <h4>card details for test:</h4>
+        <TestCardDetails>
+          <li>Card number: 4242 4242 4242 4242</li>
+          <li>MM/YY: 22/22</li>
+          <li>CVC: 222</li>
+        </TestCardDetails>
+
+        <Row>
           <CardElement
             id='card-element'
             options={cardStyle}
             onChange={handleChange}
           />
-        </form>
-      </Row>
+        </Row>
 
-      <Row>
-        <button
-          disabled={processing || disabled || succeeded || !CardElement}
-          type='button'
-          onClick={event => handleSubmit(event)}
-        >
-          <span id='button-text'>
-            {processing ? <div className='spinner' id='spinner' /> : 'Pay'}
-          </span>
-        </button>
-      </Row>
+        {/* Show any error that happens when processing the payment */}
+        {error ?? (
+          <div className='card-error' role='alert'>
+            {error}
+          </div>
+        )}
 
-      {/* Show any error that happens when processing the payment */}
-      {error ?? (
-        <div className='card-error' role='alert'>
-          {error}
-        </div>
-      )}
-
+        <Row>
+          <button
+            disabled={processing || disabled || succeeded || !CardElement}
+            type='submit'
+          >
+            <span id='button-text'>
+              {processing ? (
+                <div className='spinner' id='spinner' />
+              ) : (
+                `Pay ${formatPrice(totalAmount)}`
+              )}
+            </span>
+          </button>
+        </Row>
+      </form>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  margin-top: 1rem;
+  margin: 1rem auto;
+`
+
+const TestCardDetails = styled.ul`
+  color: var(--clr-primary-7);
 `
 
 const cardStyle = {
@@ -151,4 +165,5 @@ const cardStyle = {
       iconColor: '#fa755a',
     },
   },
+  hidePostalCode: true,
 }
