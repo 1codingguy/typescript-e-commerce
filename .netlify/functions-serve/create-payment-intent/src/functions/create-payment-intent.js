@@ -3443,18 +3443,21 @@ require_main().config();
 var stripe = require_stripe()(process.env.REACT_APP_STRIPE_SECRET_KEY);
 exports.handler = async function(event, context) {
   if (event.body) {
-    const { cart, totalAmount } = JSON.parse(event.body);
+    const { cart } = JSON.parse(event.body);
     const calculateTotal = (cart2) => {
       return cart2.reduce((total, cartItem) => {
         const { price, amount } = cartItem;
-        total.totalAmount += amount * price;
+        total += amount * price;
         return total;
       }, 0);
     };
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: totalAmount,
-        currency: "thb"
+        amount: calculateTotal(cart) * 100,
+        currency: "thb",
+        automatic_payment_methods: {
+          enabled: true
+        }
       });
       return {
         statusCode: 200,

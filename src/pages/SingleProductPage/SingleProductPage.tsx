@@ -5,20 +5,32 @@ import { ProductImages, Loading, PageHero } from '../../components'
 import styled from 'styled-components'
 import { BackToProductsButton } from './BackToProductsButton'
 import { SingleProductContent } from './SingleProductContent'
+import ErrorPage from '../ErrorPage'
 
 const SingleProductPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { singleProduct, fetchSingleProduct } = useProductsContext()
+  const {
+    singleProduct,
+    fetchSingleProduct,
+    singleProductLoading,
+    singleProductError,
+    allProducts
+  } = useProductsContext()
 
   const { name, images } = { ...singleProduct }
 
+  // when page refreshes, allProducts changes from [] to an array of data from API
+  // so if state of allProducts changes, run this useEffect too for the case of page refresh
   useEffect(() => {
     fetchSingleProduct(id)
     // eslint-disable-next-line
-  }, [id])
+  }, [id, allProducts])
 
-  if (!singleProduct) {
+  if (singleProductLoading) {
     return <Loading />
+  }
+  if (singleProductError) {
+    return <ErrorPage />
   } else {
     return (
       <Wrapper>

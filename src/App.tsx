@@ -10,6 +10,7 @@ import {
   Checkout,
   Products,
   Cart,
+  SuccessfulPayment,
 } from './pages'
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
         <Route exact path='/products/:id' children={<SingleProduct />} />
         <Route exact path='/checkout'>
           <Checkout />
+        </Route>
+        <Route exact path='/successful_payment'>
+          <SuccessfulPayment />
         </Route>
         <Route path='*'>
           <Error />

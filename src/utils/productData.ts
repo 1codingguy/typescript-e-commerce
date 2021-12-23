@@ -21,8 +21,8 @@
 export type productDataType = {
   id: string
   name: string
-  category: string
-  subCategory: string | null
+  categories: string
+  clothingCategories?: string // add in schema
   price: number
   forWhom: string
   height?: string[]
@@ -39,8 +39,8 @@ export const productData: productDataType[] = [
   {
     id: 'c01',
     name: 'Organic Cotton Bodysuit',
-    category: 'clothing',
-    subCategory: 'bodysuit',
+    categories: 'clothing',
+    clothingCategories: 'bodysuit',
     price: 490,
     forWhom: 'baby boys and girls',
     height: ['50'],
@@ -53,8 +53,8 @@ export const productData: productDataType[] = [
   {
     id: 'c02',
     name: 'FC Barcelona bodysuit',
-    category: 'clothing',
-    subCategory: 'bodysuit',
+    categories: 'clothing',
+    clothingCategories: 'bodysuit',
     price: 390,
     forWhom: 'baby boys',
     height: ['60'],
@@ -70,8 +70,7 @@ export const productData: productDataType[] = [
   {
     id: 't01',
     name: 'wooden chewing toy',
-    category: 'toy',
-    subCategory: null,
+    categories: 'toy',
     price: 1780,
     forWhom: 'baby boys and girls',
     age: ['0', '3', '6', '9', '12', '24'],
@@ -87,8 +86,7 @@ export const productData: productDataType[] = [
   {
     id: 'a01',
     name: "Vera Bradley mum's bag",
-    category: 'accessories',
-    subCategory: null,
+    categories: 'accessories',
     price: 990,
     forWhom: 'mummy',
     description: 'this is a01 accessories description',
