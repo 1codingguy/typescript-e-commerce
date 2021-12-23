@@ -7,7 +7,7 @@ const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY)
 exports.handler = async function (event, context) {
   // if there's event.body object then it's a POST request, otherwise it's a GET request
   if (event.body) {
-    const { cart, totalAmount } = JSON.parse(event.body)
+    const { cart } = JSON.parse(event.body)
 
     // take the advice of calculating total amount on server instead of on client
 
@@ -23,8 +23,11 @@ exports.handler = async function (event, context) {
       
 
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: calculateTotal(cart),
+        amount: calculateTotal(cart) * 100,
         currency: 'thb',
+        automatic_payment_methods: {
+          enabled: true,
+        },
       })
 
       return {

@@ -3,20 +3,22 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { formatPrice } from '../utils/helpers'
+import { useHistory } from 'react-router-dom'
 
 export const CheckoutForm = () => {
   const { cart, totalAmount, clearCart } = useCartContext()
-  // to navigate to the successful payment page 
-  // const history = useHistory()
 
-  // copy from stripe
   const [succeeded, setSucceeded] = useState(false) // if the payment succeeded
   const [error, setError] = useState('') // error message
   const [processing, setProcessing] = useState(false) // if the payment is processing
   const [disabled, setDisabled] = useState(false) // disable the pay button
   const [clientSecret, setClientSecret] = useState('') // client_secret returned from Netlify function
+
   const stripe = useStripe() 
   const elements = useElements()
+
+  // push to successful payment page
+  const history = useHistory()
 
   const createPaymentIntent = async () => {
     try {
@@ -43,6 +45,12 @@ export const CheckoutForm = () => {
     setError(event.error ? event.error.message : '')
   }
 
+  // const BillingDetails = {
+  //   name: 'test',
+  //   email: 'test_email@test.com'
+  // }
+
+
   const handleSubmit = async (event: any) => {
     event.preventDefault()
     setProcessing(true)
@@ -53,8 +61,12 @@ export const CheckoutForm = () => {
       const payload = await stripe?.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardElement,
+          // billing_details: BillingDetails,
         },
       })
+
+      console.log(payload)
+
       if (payload && payload.error) {
         setError(`Payment failed `)
         // console.log(payload)
@@ -63,6 +75,8 @@ export const CheckoutForm = () => {
         setError('')
         setProcessing(false)
         setSucceeded(true)
+        // re-route to successful payment page
+        history.push('/successful_payment')
         // clearCart()
       }
     }
@@ -92,7 +106,7 @@ export const CheckoutForm = () => {
         />
       </form>
       <button
-        disabled={processing || disabled || succeeded}
+        disabled={processing || disabled || succeeded || !CardElement}
         type='button'
         onClick={event => handleSubmit(event)}
       >

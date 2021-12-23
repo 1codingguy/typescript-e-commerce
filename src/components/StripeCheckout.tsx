@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { loadStripe } from '@stripe/stripe-js'
-import {
-  Elements,
-} from '@stripe/react-stripe-js'
 import { CheckoutForm } from './CheckoutForm'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 // import { useHistory } from 'react-router-dom'
 
 // Type supposed to be: Promise<Stripe | null>,
