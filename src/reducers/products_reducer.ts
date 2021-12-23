@@ -12,17 +12,6 @@ import {
 import { initialStateType } from '../context/products_context'
 import { productDataType } from '../utils/productData'
 
-// export type State = {
-//   isSidebarOpen: boolean
-//   // openSidebar: () => void
-//   // closeSidebar: () => void
-// }
-
-// type Action = {
-//   type: string
-// }
-
-// export type Dispatch = (action: Action) => void
 
 const products_reducer = (state: initialStateType, action: any) => {
   if (action.type === SIDEBAR_OPEN) {
@@ -35,6 +24,7 @@ const products_reducer = (state: initialStateType, action: any) => {
     return { ...state, productsLoading: true }
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
+    // data retrieved from API doesn't fit productDataType shape
     const allProducts = action.payload.map((product: any) => {
       let {
         _id: id,
@@ -56,11 +46,9 @@ const products_reducer = (state: initialStateType, action: any) => {
       }
       if (height) {
         height = height.map((item: any) => item.height)
-        // console.log(height)
       }
       if (age) {
         age = age.map((item: any) => item.age)
-        // console.log(age)
       }
       // images not optional so no if clause to check
       images = images.map((item: any) => item.asset.url)
@@ -90,12 +78,6 @@ const products_reducer = (state: initialStateType, action: any) => {
   if (action.type === GET_PRODUCTS_ERROR) {
     return { ...state, productsError: true, productsLoading: false }
   }
-  // if (action.type === GET_PRODUCTS_SUCCESS) {
-  //   const featured = action.payload.filter(
-  //     (product: productDataType) => product.featured
-  //   )
-  //   return { ...state, featuredProducts: featured, allProducts: action.payload }
-  // }
   if (action.type === GET_SINGLE_PRODUCT_BEGIN){
     return {...state, singleProductLoading: true}
   }
@@ -106,8 +88,8 @@ const products_reducer = (state: initialStateType, action: any) => {
   if (action.type === GET_SINGLE_PRODUCT_ERROR){
     return { ...state, singleProductError: true, singleProductLoading: false}
   }
-  return state
-  // throw new Error(`No Matching "${action.type}" - action type`)
+  // return state
+  throw new Error(`No Matching "${action.type}" - action type`)
 }
 
 export default products_reducer

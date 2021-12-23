@@ -12,7 +12,6 @@ import BillingDetailsFields from './BillingDetailsFields'
 
 export const CheckoutForm = () => {
   const { cart, totalAmount } = useCartContext()
-
   const [succeeded, setSucceeded] = useState(false) // if the payment succeeded
   const [error, setError] = useState('') // error message
   const [processing, setProcessing] = useState(false) // if the payment is processing
@@ -31,7 +30,6 @@ export const CheckoutForm = () => {
         '/.netlify/functions/create-payment-intent',
         JSON.stringify({ cart, totalAmount })
       )
-      // console.log(data)
 
       setClientSecret(data.clientSecret)
     } catch (error) {
@@ -75,11 +73,9 @@ export const CheckoutForm = () => {
         },
       })
 
-      // console.log(payload)
 
       if (payload && payload.error) {
         setError(`Payment failed `)
-        // console.log(payload)
         setProcessing(false)
       } else {
         setError('')
@@ -87,7 +83,6 @@ export const CheckoutForm = () => {
         setSucceeded(true)
         // re-route to successful payment page
         history.push('/successful_payment')
-        // clearCart()
       }
     }
   }

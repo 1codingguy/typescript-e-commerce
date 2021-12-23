@@ -58,10 +58,14 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const fetchSingleProduct = (id: string) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
     try {
-      const singleProduct = state.allProducts.filter(
+      const singleProduct: productDataType = state.allProducts.filter(
         (product: productDataType) => product.id === id
       )[0]
-      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
+      // running filter() on empty allProducts will result in undefined
+      // this if clause guard against such case
+      if (singleProduct) {
+        dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
+      }
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
     }

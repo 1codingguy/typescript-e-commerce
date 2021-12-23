@@ -14,16 +14,17 @@ const SingleProductPage = () => {
     fetchSingleProduct,
     singleProductLoading,
     singleProductError,
+    allProducts
   } = useProductsContext()
 
   const { name, images } = { ...singleProduct }
 
+  // when page refreshes, allProducts changes from [] to an array of data from API
+  // so if state of allProducts changes, run this useEffect too for the case of page refresh
   useEffect(() => {
-    // this console.log confirms page refresh doesn't run the useEffect
-    // console.log('running useEffect in SingleProductPage')
     fetchSingleProduct(id)
     // eslint-disable-next-line
-  }, [id])
+  }, [id, allProducts])
 
   if (singleProductLoading) {
     return <Loading />
