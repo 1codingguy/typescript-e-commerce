@@ -4,9 +4,15 @@ import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { formatPrice } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
+import styled from "styled-components"
+
+// Billing info and style from Stripe YouTube tutorial
+import Row from './Row'
+import FormField from './FormField'
+import BillingDetailsFields from './BillingDetailsFields'
 
 export const CheckoutForm = () => {
-  const { cart, totalAmount, clearCart } = useCartContext()
+  const { cart, totalAmount } = useCartContext()
 
   const [succeeded, setSucceeded] = useState(false) // if the payment succeeded
   const [error, setError] = useState('') // error message
@@ -14,7 +20,7 @@ export const CheckoutForm = () => {
   const [disabled, setDisabled] = useState(false) // disable the pay button
   const [clientSecret, setClientSecret] = useState('') // client_secret returned from Netlify function
 
-  const stripe = useStripe() 
+  const stripe = useStripe()
   const elements = useElements()
 
   // push to successful payment page
@@ -50,8 +56,10 @@ export const CheckoutForm = () => {
   //   email: 'test_email@test.com'
   // }
 
-
   const handleSubmit = async (event: any) => {
+
+    console.log(event)
+
     event.preventDefault()
     setProcessing(true)
 
@@ -83,54 +91,50 @@ export const CheckoutForm = () => {
   }
 
   return (
-    <div>
-      {succeeded ? (
-        <article>
-          <h4>thank you</h4>
-          <h4>payment was successful</h4>
-          <h4>back to products</h4>
-        </article>
-      ) : (
-        <article>
-          <p>total amount to pay is </p>
-          <h4>{formatPrice(totalAmount)}</h4>
-          <p>test card number 4242 4242 4242 4242</p>
-        </article>
-      )}
+    <Wrapper>
+      <h4>please enter your billing details:</h4>
+      <Row>
+        <BillingDetailsFields />
+      </Row>
 
-      <form id='payment-form' onSubmit={handleSubmit}>
-        <CardElement
-          id='card-element'
-          options={cardStyle}
-          onChange={handleChange}
-        />
-      </form>
-      <button
-        disabled={processing || disabled || succeeded || !CardElement}
-        type='button'
-        onClick={event => handleSubmit(event)}
-      >
-        <span id='button-text'>
-          {processing ? <div className='spinner' id='spinner' /> : 'Pay'}
-        </span>
-      </button>
+      <h4>please enter your card details:</h4>
+      <Row>
+        <form id='payment-form' onSubmit={handleSubmit}>
+          <CardElement
+            id='card-element'
+            options={cardStyle}
+            onChange={handleChange}
+          />
+        </form>
+      </Row>
+
+      <Row>
+        <button
+          disabled={processing || disabled || succeeded || !CardElement}
+          type='button'
+          onClick={event => handleSubmit(event)}
+        >
+          <span id='button-text'>
+            {processing ? <div className='spinner' id='spinner' /> : 'Pay'}
+          </span>
+        </button>
+      </Row>
+
       {/* Show any error that happens when processing the payment */}
       {error ?? (
         <div className='card-error' role='alert'>
           {error}
         </div>
       )}
-      {/* Show a success message upon completion */}
-      <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-        Payment succeeded, see the result in your{' '}
-        <a href='https://dashboard.stripe.com/test/payments'>
-          Stripe dashboard.
-        </a>{' '}
-        Refresh the page to pay again
-      </p>
-    </div>
+
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  margin-top: 1rem;
+`
+
 const cardStyle = {
   style: {
     base: {

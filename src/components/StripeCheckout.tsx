@@ -25,7 +25,7 @@ const StripeCheckout = () => {
 
 const Wrapper = styled.section`
   form {
-    width: 50vw;
+    width: 30vw;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
       0px 2px 5px 0px rgba(50, 50, 93, 0.1),
@@ -158,7 +158,7 @@ const Wrapper = styled.section`
   }
   @media screen and (max-width: 768px) {
     form {
-      width: 80vw;
+      width: 100%;
     }
   }
 `
