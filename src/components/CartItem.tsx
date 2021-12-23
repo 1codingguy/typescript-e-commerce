@@ -4,6 +4,7 @@ import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
 import { FaTrash } from 'react-icons/fa'
 import { cartType, useCartContext } from '../context/cart_context'
+import { Link } from 'react-router-dom'
 
 const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
   const { id, image, name, color, price, amount } = cartItem
@@ -21,7 +22,9 @@ const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
     <Wrapper>
       {/* item column */}
       <div className='title'>
-        <img src={image} alt={name} />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt={name} />
+        </Link>
         <div>
           <h5 className='name'>{name}</h5>
           {/* decide later if every item has a color prop */}
