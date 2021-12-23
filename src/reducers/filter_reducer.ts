@@ -100,8 +100,8 @@ const filter_reducer = (state: initialStateType, action: {type: any, payload?: a
       tempProducts = tempProducts.filter(product => {
         // console.log(product)
         return (
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm)
+          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          product.description.toLowerCase().includes(searchTerm.toLowerCase())
         )
       })
     }
