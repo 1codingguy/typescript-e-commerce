@@ -1,4 +1,7 @@
 /**
+ * These key value pairs are no longer useful 
+ * Now use the actual value coming back from Sanity CMS schema
+ * 
  * height categories:
  * 50: 50-59 cm
  * 60: 60-69 cm
@@ -100,4 +103,4 @@ export type productDataTypeKey = keyof productDataType
 //   },
 // ]
 
-export const featuredProducts = productData.filter(product => product.featured)
+// export const featuredProducts = productData.filter(product => product.featured)
