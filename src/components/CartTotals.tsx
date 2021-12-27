@@ -43,6 +43,19 @@ const Wrapper = styled.section`
   margin-top: 3rem;
   display: flex;
   justify-content: center;
+
+  /* @media (max-width: 576px) {
+    && {
+      .btn {
+        width: 100vw;
+      }
+      article {
+        width: 100vw;
+        padding: 1.5rem;
+      }
+    }
+  } */
+
   article {
     border: 1px solid var(--clr-grey-8);
     border-radius: var(--radius);

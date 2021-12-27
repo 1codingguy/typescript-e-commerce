@@ -34,7 +34,7 @@ const Wrapper = styled.section`
     width: 90vw;
     max-width: 500px;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 60% 40%;
   }
 
   .form-input,
