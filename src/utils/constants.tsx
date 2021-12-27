@@ -49,6 +49,9 @@ export const QUERY = `
   allProduct {
     _id
     name
+    slug{
+      current
+    }
     categories {
       categories
     }

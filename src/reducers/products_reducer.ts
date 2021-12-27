@@ -29,6 +29,7 @@ const products_reducer = (state: initialStateType, action: any) => {
       let {
         _id: id,
         name,
+        slug: {current: slug},
         categories: { categories },
         clothingCategories, // might be null, need to flatten
         price,
@@ -55,6 +56,7 @@ const products_reducer = (state: initialStateType, action: any) => {
       return {
         id,
         name,
+        slug,
         categories,
         clothingCategories,
         price,
@@ -66,6 +68,8 @@ const products_reducer = (state: initialStateType, action: any) => {
         images,
       }
     })
+
+    console.log(allProducts)
 
     const featuredProducts = allProducts.filter(
       (product: productDataType) => product.featured

@@ -9,6 +9,15 @@ const product = {
       type: 'string',
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+    },
+    {
       name: 'categories',
       type: 'reference',
       to: [{ type: 'categories' }],
@@ -68,15 +77,9 @@ const product = {
           type: 'image',
           options: {
             hotspot: true,
-          }
+          },
         },
       ],
-    },
-    // hex code color in string
-    {
-      name: 'colors',
-      type: 'array',
-      of: [{ type: 'string' }],
     },
   ],
 }

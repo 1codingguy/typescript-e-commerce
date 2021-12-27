@@ -24,6 +24,7 @@
 export type productDataType = {
   id: string
   name: string
+  slug: string
   categories: string
   clothingCategories?: string // add in schema
   price: number
