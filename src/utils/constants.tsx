@@ -52,6 +52,7 @@ export const QUERY = `
     slug{
       current
     }
+    brand
     categories {
       categories
     }
@@ -59,6 +60,7 @@ export const QUERY = `
       clothingCategories
     }
     price
+    stock
     forWhom {
       forWhom
     }

@@ -30,12 +30,14 @@ const products_reducer = (state: initialStateType, action: any) => {
         _id: id,
         name,
         slug: {current: slug},
+        brand,
         categories: { categories },
         clothingCategories, // might be null, need to flatten
         price,
         forWhom: { forWhom },
         height, //need to flatten
         age, //need to flatten
+        stock,
         description,
         featured,
         images, //need to flatten
@@ -57,9 +59,11 @@ const products_reducer = (state: initialStateType, action: any) => {
         id,
         name,
         slug,
+        brand,
         categories,
         clothingCategories,
         price,
+        stock,
         forWhom,
         height,
         age,
