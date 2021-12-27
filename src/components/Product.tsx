@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 import { productDataType } from '../utils/productData'
 
 const Product: React.FC<{ product: productDataType }> = ({ product }) => {
-  const { id, images, name, price } = product
+  const { images, name, price, slug } = product
   const image = images[0]
   return (
     <Wrapper>
       <div className='container'>
         <img src={image} alt={name} />
-        <Link to={`/products/${id}`} className='link'>
+        <Link to={`/products/${slug}`} className='link'>
           <FaSearch />
         </Link>
       </div>

@@ -55,11 +55,11 @@ export const ProductsProvider: React.FC = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE })
   }
 
-  const fetchSingleProduct = (id: string) => {
+  const fetchSingleProduct = (slug: string) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
     try {
       const singleProduct: productDataType = state.allProducts.filter(
-        (product: productDataType) => product.id === id
+        (product: productDataType) => product.slug === slug
       )[0]
       // running filter() on empty allProducts will result in undefined
       // this if clause guard against such case

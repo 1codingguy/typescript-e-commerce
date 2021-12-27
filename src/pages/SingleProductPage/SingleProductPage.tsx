@@ -8,23 +8,26 @@ import { SingleProductContent } from './SingleProductContent'
 import ErrorPage from '../ErrorPage'
 
 const SingleProductPage = () => {
-  const { id } = useParams<{ id: string }>()
+  const { slug } = useParams<{ slug: string }>()
   const {
     singleProduct,
     fetchSingleProduct,
     singleProductLoading,
     singleProductError,
-    allProducts
+    allProducts,
   } = useProductsContext()
 
   const { name, images } = { ...singleProduct }
 
   // when page refreshes, allProducts changes from [] to an array of data from API
   // so if state of allProducts changes, run this useEffect too for the case of page refresh
+
   useEffect(() => {
-    fetchSingleProduct(id)
+    if (slug) {
+      fetchSingleProduct(slug)
+    }
     // eslint-disable-next-line
-  }, [id, allProducts])
+  }, [slug, allProducts])
 
   if (singleProductLoading) {
     return <Loading />
