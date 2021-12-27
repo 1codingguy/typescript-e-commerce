@@ -69,12 +69,21 @@ const Wrapper = styled.main`
     }
   }
   .info {
-    text-transform: capitalize;
     width: 300px;
     display: grid;
-    grid-template-columns: 125px 1fr;
+    grid-template-columns: 180px 1fr;
+    margin-bottom: 1.25rem;
+    &:first-letter {
+      text-transform: capitalize;
+    }
     span {
       font-weight: 700;
+    }
+    .age .height {
+      font-weight: 400;
+      display: grid;
+      grid-template-rows: 1fr;
+
     }
   }
 

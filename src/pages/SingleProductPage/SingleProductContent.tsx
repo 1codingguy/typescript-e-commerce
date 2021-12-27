@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import { useProductsContext } from '../../context/products_context'
 import { formatPrice } from '../../utils/helpers'
 import { AddToCart } from '../../components'
@@ -7,7 +6,9 @@ import { AddToCart } from '../../components'
 export const SingleProductContent = () => {
   const { singleProduct } = useProductsContext()
 
-  const { name, price, description, brand, stock } = { ...singleProduct }
+  const { name, price, description, brand, stock, age, height } = {
+    ...singleProduct,
+  }
   return (
     <section className='content'>
       <h2>{name}</h2>
@@ -15,19 +16,50 @@ export const SingleProductContent = () => {
       <h5 className='price'>{price && formatPrice(price)}</h5>
       <p className='desc'>{description}</p>
       <p className='info'>
-        <span>Available : </span>
-        {stock}
+        <span>Availability : </span>
+        {stock ? 'In stock' : 'Sorry, out of stock'}
         {/* logic showing in stock or out of stock */}
       </p>
 
-      <p className='info'>
-        <span>Brand : </span>
-        {/* to add brand variable later */}
-        {brand}
-      </p>
-      <hr />
-      {/* insert logic: if stock larger than 0, then display AddToCart component */}
-      <AddToCart singleProduct={singleProduct} />
+      {brand ? (
+        <p className='info'>
+          <span>Brand : </span>
+          {brand}
+        </p>
+      ) : undefined}
+
+      {age ? (
+        <section className='info'>
+          <span>Suitable for age : </span>
+          <ul>
+            {age.map(item => (
+              <li key={item} className='age'>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : undefined}
+
+      {height ? (
+        <section className='info'>
+          <span>Suitable for height : </span>
+          <ul>
+            {height.map(item => (
+              <li key={item} className='height'>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : undefined}
+
+      {stock ? (
+        <>
+          <hr />
+          <AddToCart singleProduct={singleProduct} />
+        </>
+      ) : undefined}
     </section>
   )
 }
