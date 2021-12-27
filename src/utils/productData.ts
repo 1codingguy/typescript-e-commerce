@@ -30,7 +30,6 @@ export type productDataType = {
   forWhom: string
   height?: string[]
   age?: string[]
-  colors?: string[] // colors should be hex value instead of a string describing the color
   description: string
   featured?: boolean
   images: string[]

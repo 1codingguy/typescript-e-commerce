@@ -72,7 +72,6 @@ export const QUERY = `
         url
       }
     }
-    colors
   }
 }
 `

@@ -12,7 +12,6 @@ import {
 export type cartType = {
   id: string
   name: string
-  color: string
   amount: number
   image: string
   price: number
@@ -25,7 +24,6 @@ export type initialStateType = {
   totalAmount: number
   addToCart: (
     id: string | undefined,
-    color: string | undefined,
     amount: number,
     singleProduct: productDataType | {}
   ) => void
@@ -60,13 +58,12 @@ export const CartProvider: React.FC = ({ children }) => {
 
   const addToCart = (
     id: string | undefined,
-    color: string | undefined,
     amount: number,
     singleProduct: productDataType | {}
   ) => {
     dispatch({
       type: ADD_TO_CART,
-      payload: { id, color, amount, singleProduct },
+      payload: { id, amount, singleProduct },
     })
   }
 

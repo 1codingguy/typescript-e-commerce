@@ -35,7 +35,6 @@ const products_reducer = (state: initialStateType, action: any) => {
         forWhom: { forWhom },
         height, //need to flatten
         age, //need to flatten
-        colors,
         description,
         featured,
         images, //need to flatten
@@ -62,7 +61,6 @@ const products_reducer = (state: initialStateType, action: any) => {
         forWhom,
         height,
         age,
-        colors,
         description,
         featured,
         images,

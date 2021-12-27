@@ -7,7 +7,7 @@ import { cartType, useCartContext } from '../context/cart_context'
 import { Link } from 'react-router-dom'
 
 const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
-  const { id, image, name, color, price, amount } = cartItem
+  const { id, image, name, price, amount } = cartItem
 
   const { removeItem, toggleAmount } = useCartContext()
 
@@ -27,13 +27,7 @@ const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
         </Link>
         <div>
           <h5 className='name'>{name}</h5>
-          {/* decide later if every item has a color prop */}
-          {/* if not use && operator, items without color display a red color??? */}
-          {color && (
-            <p className='color'>
-              color: <span style={{ background: color }}></span>
-            </p>
-          )}
+
 
           <h5 className='price-small'>{formatPrice(price)}</h5>
         </div>

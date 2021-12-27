@@ -4,16 +4,13 @@ import { Link } from 'react-router-dom'
 import { productDataType } from '../../utils/productData'
 import { useCartContext } from '../../context/cart_context'
 import AmountButtons from '../AmountButtons'
-import { AddToCartColors } from './AddToCartColors'
 
 const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
   singleProduct,
 }) => {
   const { addToCart } = useCartContext()
   // need the number of stock here as well after setting up in productData array
-  const { id, colors } = { ...singleProduct }
-  const [colorIndex, setColorIndex] = useState(0)
-  const mainColor = colors?.[colorIndex]
+  const { id } = { ...singleProduct }
   const [amount, setAmount] = useState(1)
 
   // if there's stock variable, add logic to allow adding the amount === stock
@@ -27,11 +24,6 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
 
   return (
     <Wrapper>
-      <AddToCartColors
-        colors={colors}
-        colorIndex={colorIndex}
-        setColorIndex={setColorIndex}
-      />
       <div className='btn-container'>
         <AmountButtons
           amount={amount}
@@ -41,7 +33,7 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
         <Link
           to='/cart'
           className='btn'
-          onClick={() => addToCart(id, mainColor, amount, singleProduct)}
+          onClick={() => addToCart(id, amount, singleProduct)}
         >
           add to cart
         </Link>

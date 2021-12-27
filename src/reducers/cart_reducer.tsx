@@ -12,13 +12,11 @@ const cart_reducer = (
   action: { type: any; payload?: any }
 ) => {
   if (action.type === ADD_TO_CART) {
-    const { id, color, amount, singleProduct } = action.payload
-    // address the color might not present problem later, id+color
+    const { id, amount, singleProduct } = action.payload
     const tempItem = state.cart.find(item => item.id === id)
 
     if (tempItem) {
       const tempCart = state.cart.map(cartItem => {
-        // Original version is id+color or color here
         if (cartItem.id === id) {
           const newAmount = tempItem.amount + amount
           return { ...cartItem, amount: newAmount }
@@ -32,7 +30,6 @@ const cart_reducer = (
       const newItem: cartType = {
         id,
         name: singleProduct.name,
-        color,
         amount,
         image: singleProduct.images[0],
         price: singleProduct.price,
