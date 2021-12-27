@@ -18,6 +18,10 @@ const product = {
       },
     },
     {
+      name: 'brand',
+      type: 'string',
+    },
+    {
       name: 'categories',
       type: 'reference',
       to: [{ type: 'categories' }],
@@ -31,6 +35,11 @@ const product = {
     {
       name: 'price',
       type: 'number',
+    },
+    {
+      name: 'stock',
+      type: 'number',
+      validation: field => field.required(),
     },
     {
       name: 'forWhom',
