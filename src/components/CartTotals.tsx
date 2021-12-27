@@ -44,17 +44,22 @@ const Wrapper = styled.section`
   display: flex;
   justify-content: center;
 
-  /* @media (max-width: 576px) {
+  @media (max-width: 576px) {
     && {
-      .btn {
-        width: 100vw;
-      }
       article {
-        width: 100vw;
         padding: 1.5rem;
       }
+      h4,
+      h5,
+      p {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+      }
+      h4 {
+        font-size: 1rem;
+      }
     }
-  } */
+  }
 
   article {
     border: 1px solid var(--clr-grey-8);

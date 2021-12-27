@@ -7,6 +7,7 @@ const product = {
       name: 'name',
       title: 'Name',
       type: 'string',
+      validation: field => field.required(),
     },
     {
       name: 'slug',
@@ -16,6 +17,7 @@ const product = {
         source: 'name',
         maxLength: 96,
       },
+      validation: field => field.required(),
     },
     {
       name: 'brand',
@@ -25,6 +27,7 @@ const product = {
       name: 'categories',
       type: 'reference',
       to: [{ type: 'categories' }],
+      validation: field => field.required(),
     },
     // eq to subCategory
     {
@@ -35,6 +38,7 @@ const product = {
     {
       name: 'price',
       type: 'number',
+      validation: field => field.required(),
     },
     {
       name: 'stock',
@@ -46,6 +50,7 @@ const product = {
       title: 'For Whom',
       type: 'reference',
       to: [{ type: 'forWhom' }],
+      validation: field => field.required(),
     },
     {
       name: 'height',
@@ -89,6 +94,7 @@ const product = {
           },
         },
       ],
+      validation: field => field.required(),
     },
   ],
 }

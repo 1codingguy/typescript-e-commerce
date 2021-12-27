@@ -39,6 +39,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+    column-gap: 0.25rem;
   }
   .link-btn {
     background: transparent;
