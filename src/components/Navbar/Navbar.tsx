@@ -40,7 +40,6 @@ const NavContainer = styled.nav`
     img {
       width: 175px;
       /* original margin-left: -15px */
-      margin-left: 15px;
     }
   }
   .nav-toggle {
@@ -59,6 +58,10 @@ const NavContainer = styled.nav`
     display: none;
   }
   @media (min-width: 992px) {
+    img{
+      margin-left: 15px;
+
+    }
     .nav-toggle {
       display: none;
     }

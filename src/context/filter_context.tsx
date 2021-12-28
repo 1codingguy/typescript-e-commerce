@@ -9,6 +9,8 @@ import {
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
+  HANDLE_CLICK_FROM_SERVICES,
+  RESET_IS_CLICK_FROM_SERVICES,
 } from '../actions'
 import { useProductsContext } from './products_context'
 import { productDataType } from '../utils/productData'
@@ -32,7 +34,7 @@ export const defaultFilters: filtersType = {
   price: 0,
   forWhom: 'all',
   age: [],
-  height: []
+  height: [],
 }
 
 export type initialStateType = {
@@ -46,6 +48,9 @@ export type initialStateType = {
   filters: filtersType
   updateFilters: (e: any) => void
   clearFilters: () => void
+  isClickFromServices: boolean
+  handleClickFromServices: () => void
+  resetIsClickFromServices: () => void
 }
 
 const initialState: initialStateType = {
@@ -59,6 +64,9 @@ const initialState: initialStateType = {
   filters: defaultFilters,
   updateFilters: () => {},
   clearFilters: () => {},
+  isClickFromServices: false,
+  handleClickFromServices: () => {},
+  resetIsClickFromServices: () => {},
 }
 
 const FilterContext = React.createContext<initialStateType>(initialState)
@@ -99,6 +107,9 @@ export const FilterProvider: React.FC = ({ children }) => {
     if (name === 'category') {
       value = e.target.textContent
     }
+    if (name === 'home-page-category') {
+      name = 'category'
+    }
     if (name === 'price') {
       value = Number(value)
     }
@@ -111,6 +122,14 @@ export const FilterProvider: React.FC = ({ children }) => {
     dispatch({ type: CLEAR_FILTERS })
   }
 
+  const handleClickFromServices = () => {
+    dispatch({ type: HANDLE_CLICK_FROM_SERVICES })
+  }
+
+  const resetIsClickFromServices = () => {
+    dispatch({ type: RESET_IS_CLICK_FROM_SERVICES })
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -120,6 +139,8 @@ export const FilterProvider: React.FC = ({ children }) => {
         updateSort,
         updateFilters,
         clearFilters,
+        handleClickFromServices,
+        resetIsClickFromServices,
       }}
     >
       {children}

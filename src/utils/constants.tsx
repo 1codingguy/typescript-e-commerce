@@ -24,8 +24,8 @@ export const services = [
   {
     id: 1,
     icon: <MdOutlineSmartToy />,
-    title: 'toys',
-    text: 'toys text',
+    title: 'toy',
+    text: 'toy text',
   },
   {
     id: 2,

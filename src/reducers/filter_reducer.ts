@@ -7,11 +7,16 @@ import {
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
+  HANDLE_CLICK_FROM_SERVICES,
+  RESET_IS_CLICK_FROM_SERVICES,
 } from '../actions'
 import { initialStateType } from '../context/filter_context'
 import { productDataType } from '../utils/productData'
 
-const filter_reducer = (state: initialStateType, action: {type: any, payload?: any}) => {
+const filter_reducer = (
+  state: initialStateType,
+  action: { type: any; payload?: any }
+) => {
   if (action.type === LOAD_PRODUCTS) {
     const maxPrice = Math.max(
       ...action.payload.map((item: productDataType) => item.price)
@@ -169,6 +174,13 @@ const filter_reducer = (state: initialStateType, action: {type: any, payload?: a
       },
     }
   }
+  if (action.type === HANDLE_CLICK_FROM_SERVICES) {
+    return { ...state, isClickFromServices: true }
+  }
+  if (action.type === RESET_IS_CLICK_FROM_SERVICES) {
+    return { ...state, isClickFromServices: false }
+  }
+
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 

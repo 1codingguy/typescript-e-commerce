@@ -4,11 +4,17 @@ import { Filters, ProductList, Sort, PageHero } from '../components'
 import { useFilterContext } from '../context/filter_context'
 
 const ProductsPage = () => {
-  const { clearFilters } = useFilterContext()
+  const { clearFilters, isClickFromServices, resetIsClickFromServices } =
+    useFilterContext()
 
-  // when component mounts clear the filter
   useEffect(() => {
-    clearFilters()
+    if (isClickFromServices) {
+      // no set time out is needed to reset the variable
+      resetIsClickFromServices()
+    } else {
+      // when component mounts clear the filter
+      clearFilters()
+    }
     // eslint-disable-next-line
   }, [])
 

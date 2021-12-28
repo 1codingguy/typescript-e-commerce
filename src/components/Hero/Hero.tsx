@@ -29,7 +29,7 @@ const Wrapper = styled.section`
   p {
     line-height: 2;
     max-width: 45em;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: var(--clr-grey-5);
     font-size: 1rem;
   }

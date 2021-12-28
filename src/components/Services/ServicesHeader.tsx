@@ -5,9 +5,10 @@ export const ServicesHeader = () => {
         high quality <br /> baby product
       </h3>
       <p>
-        we offer well priced, high quality branded baby products from Japan, USA
-        and Europe. All items are in limited quantity.
+        We offer well priced, high quality branded baby products imported from
+        Japan, Europe and USA. All items are in limited quantity.
       </p>
+      <p>We have the following types of products:</p>
     </article>
-  );
-};
+  )
+}
