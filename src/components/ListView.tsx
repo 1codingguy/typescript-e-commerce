@@ -10,15 +10,15 @@ const ListView: React.FC<{ filteredProducts: productDataType[] }> = ({
   return (
     <Wrapper>
       {filteredProducts.map(product => {
-        const { id, images, name, price, itemDescription } = product
+        const { slug, images, name, price, itemDescription } = product
         return (
-          <article key={id}>
+          <article key={slug}>
             <img src={images[0]} alt={name} />
             <div>
               <h4>{name}</h4>
               <h5>{formatPrice(price)}</h5>
               <p>{itemDescription.substring(0, 150)}...</p>
-              <Link to={`/products/${id}`} className='btn'>
+              <Link to={`/products/${slug}`} className='btn'>
                 Details
               </Link>
             </div>
