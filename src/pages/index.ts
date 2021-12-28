@@ -1,6 +1,6 @@
 import Error from './ErrorPage'
 import Home from './HomePage'
-import About from './AboutPage'
+import Shipping from './ShippingPage'
 import Checkout from './CheckoutPage'
 import SingleProduct from './SingleProductPage/SingleProductPage'
 import Products from './ProductsPage'
@@ -9,7 +9,7 @@ import SuccessfulPayment from './SuccessfulPaymentPage'
 export {
   Error,
   Home,
-  About,
+  Shipping,
   Checkout,
   SingleProduct,
   Products,

@@ -5,7 +5,7 @@ import { Navbar, Sidebar, Footer } from './components'
 import {
   Home,
   Error,
-  About,
+  Shipping,
   SingleProduct,
   Checkout,
   Products,
@@ -22,8 +22,8 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route exact path='/about'>
-          <About />
+        <Route exact path='/shipping'>
+          <Shipping />
         </Route>
         <Route exact path='/cart'>
           <Cart />

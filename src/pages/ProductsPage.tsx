@@ -9,6 +9,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     if (isClickFromServices) {
+      // if this page mounts because clicking a button in Services, should not run clearFilters()
       // no set time out is needed to reset the variable
       resetIsClickFromServices()
     } else {

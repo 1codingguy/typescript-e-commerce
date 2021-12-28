@@ -1,18 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import { PageHero } from '../components'
+import shopLogo from '../assets/shop_logo.jpg'
 
-const AboutPage = () => {
+const ShippingPage = () => {
   return (
     <main>
-      <PageHero title='about'/>
+      <PageHero title='shipping' />
       <Wrapper className='page section section-center'>
         {/* insert about page image here */}
-        {/* <img src="" alt="" /> */}
+        <img src={shopLogo} alt='square logo' />
         <article className='title'>
-          <h2>About Us</h2>
+          <h2>Free Shipping!!!</h2>
           <div className='underline'></div>
-          <p>Insert about us text here</p>
+          <p>
+            We currently offer free shipping for any places within Thailand.
+          </p>
+          <p>
+            You will also receive a free gift from us if you spend more than
+            1500B with us.
+          </p>
         </article>
       </Wrapper>
     </main>
@@ -46,4 +53,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `
-export default AboutPage
+export default ShippingPage
