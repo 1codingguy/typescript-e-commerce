@@ -11,12 +11,15 @@ import Row from './Row'
 import BillingDetailsFields from './BillingDetailsFields'
 
 export const CheckoutForm = () => {
-  const { cart, totalAmount } = useCartContext()
+  const { cart } = useCartContext()
   const [succeeded, setSucceeded] = useState(false) // if the payment succeeded
   const [error, setError] = useState('') // error message
   const [processing, setProcessing] = useState(false) // if the payment is processing
   const [disabled, setDisabled] = useState(false) // disable the pay button
   const [clientSecret, setClientSecret] = useState('') // client_secret returned from Netlify function
+
+  // display the payable amount returned from server 
+  const [totalAmountFromServer, setTotalAmountFromServer] = useState(0)
 
   const stripe = useStripe()
   const elements = useElements()
@@ -28,10 +31,11 @@ export const CheckoutForm = () => {
     try {
       const { data } = await axios.post(
         '/.netlify/functions/create-payment-intent',
-        JSON.stringify({ cart, totalAmount })
+        JSON.stringify({ cart })
       )
-
+            
       setClientSecret(data.clientSecret)
+      setTotalAmountFromServer(data.amount)
     } catch (error) {
       console.log(error)
     }
@@ -126,7 +130,7 @@ export const CheckoutForm = () => {
               {processing ? (
                 <div className='spinner' id='spinner' />
               ) : (
-                `Pay ${formatPrice(totalAmount)}`
+                `Pay ${formatPrice(totalAmountFromServer/ 100)}`
               )}
             </span>
           </button>
