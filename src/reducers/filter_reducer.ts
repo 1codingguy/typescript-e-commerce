@@ -106,7 +106,7 @@ const filter_reducer = (
         // console.log(product)
         return (
           product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchTerm.toLowerCase())
+          product.itemDescription.toLowerCase().includes(searchTerm.toLowerCase())
         )
       })
     }

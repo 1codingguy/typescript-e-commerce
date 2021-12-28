@@ -49,7 +49,7 @@ export const QUERY = `
   allProduct {
     _id
     name
-    slug{
+    slug {
       current
     }
     brand
@@ -67,10 +67,12 @@ export const QUERY = `
     height {
       height
     }
+    heightDescription
     age {
       age
     }
-    description
+    ageDescription
+    itemDescription
     featured
     images {
       asset {
@@ -79,4 +81,5 @@ export const QUERY = `
     }
   }
 }
+
 `

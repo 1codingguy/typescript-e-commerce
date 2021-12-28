@@ -63,6 +63,10 @@ const product = {
       ],
     },
     {
+      name: 'heightDescription',
+      type: 'text',
+    },
+    {
       name: 'age',
       type: 'array',
       of: [
@@ -73,8 +77,11 @@ const product = {
       ],
     },
     {
-      name: 'description',
-      title: 'Description',
+      name: 'ageDescription',
+      type: 'text',
+    },
+    {
+      name: 'itemDescription',
       type: 'text',
     },
     {

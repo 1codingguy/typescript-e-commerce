@@ -6,7 +6,7 @@ import { AddToCart } from '../../components'
 export const SingleProductContent = () => {
   const { singleProduct } = useProductsContext()
 
-  const { name, price, description, brand, stock, age, height } = {
+  const { name, price, itemDescription, brand, stock,  ageDescription, heightDescription } = {
     ...singleProduct,
   }
   return (
@@ -14,7 +14,7 @@ export const SingleProductContent = () => {
       <h2>{name}</h2>
       {/* insert stars component here  */}
       <h5 className='price'>{price && formatPrice(price)}</h5>
-      <p className='desc'>{description}</p>
+      <p className='desc'>{itemDescription}</p>
       <p className='info'>
         <span>Availability : </span>
         {stock ? 'In stock' : 'Sorry, out of stock'}
@@ -28,30 +28,18 @@ export const SingleProductContent = () => {
         </p>
       ) : undefined}
 
-      {age ? (
-        <section className='info'>
+      {ageDescription ? (
+        <p className='info'>
           <span>Suitable for age : </span>
-          <ul>
-            {age.map(item => (
-              <li key={item} className='age'>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </section>
+          {ageDescription}
+        </p>
       ) : undefined}
 
-      {height ? (
-        <section className='info'>
+      {heightDescription ? (
+        <p className='info'>
           <span>Suitable for height : </span>
-          <ul>
-            {height.map(item => (
-              <li key={item} className='height'>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </section>
+          {heightDescription}
+        </p>
       ) : undefined}
 
       {stock ? (

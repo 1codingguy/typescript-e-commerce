@@ -67,6 +67,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
         dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
       }
     } catch (error) {
+      console.log(error)
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
     }
   }
@@ -79,6 +80,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
         const result = queryResult.data.data.allProduct
         dispatch({ type: GET_PRODUCTS_SUCCESS, payload: result })
       } catch (error) {
+        console.log(error)
         dispatch({ type: GET_PRODUCTS_ERROR })
       }
     }

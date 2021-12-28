@@ -32,8 +32,10 @@ export type productDataType = {
   stock: number
   forWhom: string
   height?: string[]
+  heightDescription?: string
   age?: string[]
-  description: string
+  ageDescription: string
+  itemDescription: string
   featured?: boolean
   images: string[]
 }

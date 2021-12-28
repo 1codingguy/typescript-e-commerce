@@ -79,12 +79,6 @@ const Wrapper = styled.main`
     span {
       font-weight: 700;
     }
-    .age .height {
-      font-weight: 400;
-      display: grid;
-      grid-template-rows: 1fr;
-
-    }
   }
 
   @media (min-width: 992px) {

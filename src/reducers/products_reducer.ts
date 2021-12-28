@@ -36,9 +36,11 @@ const products_reducer = (state: initialStateType, action: any) => {
         price,
         forWhom: { forWhom },
         height, //need to flatten
+        heightDescription,
         age, //need to flatten
+        ageDescription,
         stock,
-        description,
+        itemDescription,
         featured,
         images, //need to flatten
       } = product
@@ -66,8 +68,10 @@ const products_reducer = (state: initialStateType, action: any) => {
         stock,
         forWhom,
         height,
+        heightDescription,
         age,
-        description,
+        ageDescription,
+        itemDescription,
         featured,
         images,
       }
