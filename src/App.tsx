@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Navbar, Sidebar, Footer } from './components'
+import { Navbar, Sidebar, Footer, ScrollToTop } from './components'
 
 import {
   Home,
@@ -16,6 +16,7 @@ import {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Sidebar />
       <Switch>

@@ -15,6 +15,7 @@ import ProductList from './ProductList'
 import Sort from './Sort/Sort'
 import CartContent from './CartContent'
 import StripeCheckout from './StripeCheckout'
+import ScrollToTop from './ScrollToTop'
 
 
 // import CartButtons from './CartButtons'
@@ -38,6 +39,7 @@ export {
   Sort,
   CartContent,
   StripeCheckout,
+  ScrollToTop,
 
   // CartButtons,
   // Error,
