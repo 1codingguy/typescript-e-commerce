@@ -17,7 +17,7 @@ export const SingleProductContent = () => {
       <p className='desc'>{itemDescription}</p>
       <p className='info'>
         <span>Availability : </span>
-        {stock ? 'In stock' : 'Sorry, out of stock'}
+        {stock ? 'In stock' : 'Out of stock'}
         {/* logic showing in stock or out of stock */}
       </p>
 

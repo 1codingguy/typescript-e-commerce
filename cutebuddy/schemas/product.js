@@ -64,7 +64,7 @@ const product = {
     },
     {
       name: 'heightDescription',
-      type: 'text',
+      type: 'string',
     },
     {
       name: 'age',
@@ -78,11 +78,12 @@ const product = {
     },
     {
       name: 'ageDescription',
-      type: 'text',
+      type: 'string',
     },
     {
       name: 'itemDescription',
       type: 'text',
+      validation: field => field.required(),
     },
     {
       name: 'featured',
@@ -101,6 +102,11 @@ const product = {
           },
         },
       ],
+      validation: field => field.required(),
+    },
+    {
+      name: 'imageNumber',
+      type: 'string',
       validation: field => field.required(),
     },
   ],
