@@ -10,7 +10,7 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
 }) => {
   const { addToCart } = useCartContext()
   // need the number of stock here as well after setting up in productData array
-  const { id } = { ...singleProduct }
+  const { id, slug } = { ...singleProduct }
   const [amount, setAmount] = useState(1)
 
   // if there's stock variable, add logic to allow adding the amount === stock
@@ -33,7 +33,7 @@ const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
         <Link
           to='/cart'
           className='btn'
-          onClick={() => addToCart(id, amount, singleProduct)}
+          onClick={() => addToCart(id, slug, amount, singleProduct)}
         >
           add to cart
         </Link>

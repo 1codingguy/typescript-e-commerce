@@ -7,7 +7,7 @@ import { cartType, useCartContext } from '../context/cart_context'
 import { Link } from 'react-router-dom'
 
 const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
-  const { id, image, name, price, amount } = cartItem
+  const { id, image, name, price, amount, slug } = cartItem
 
   const { removeItem, toggleAmount } = useCartContext()
 
@@ -22,7 +22,7 @@ const CartItem: React.FC<{ cartItem: cartType }> = ({ cartItem }) => {
     <Wrapper>
       {/* item column */}
       <div className='title'>
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${slug}`}>
           <img src={image} alt={name} />
         </Link>
         <div>

@@ -12,7 +12,7 @@ const cart_reducer = (
   action: { type: any; payload?: any }
 ) => {
   if (action.type === ADD_TO_CART) {
-    const { id, amount, singleProduct } = action.payload
+    const { id, slug, amount, singleProduct } = action.payload
     const tempItem = state.cart.find(item => item.id === id)
 
     if (tempItem) {
@@ -29,6 +29,7 @@ const cart_reducer = (
     } else {
       const newItem: cartType = {
         id,
+        slug,
         name: singleProduct.name,
         amount,
         image: singleProduct.images[0],
