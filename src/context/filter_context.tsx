@@ -147,7 +147,7 @@ export const FilterProvider: React.FC = ({ children }) => {
     </FilterContext.Provider>
   )
 }
-// make sure use
+
 export const useFilterContext = () => {
   return useContext(FilterContext)
 }

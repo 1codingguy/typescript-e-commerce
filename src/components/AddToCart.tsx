@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { productDataType } from '../../utils/productData'
-import { useCartContext } from '../../context/cart_context'
-import AmountButtons from '../AmountButtons'
+import { productDataType } from '../utils/productData'
+import { useCartContext } from '../context/cart_context'
+import AmountButtons from './AmountButtons'
 
 const AddToCart: React.FC<{ singleProduct: productDataType | {} }> = ({
   singleProduct,

@@ -5,7 +5,6 @@ import { useCartContext } from '../context/cart_context'
 import { formatPrice } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-
 // Billing info and style from Stripe YouTube tutorial
 import Row from './Row'
 import BillingDetailsFields from './BillingDetailsFields'
@@ -41,7 +40,7 @@ export const CheckoutForm = () => {
     }
   }
 
-  // send cart, totalAmount to netlify function when component mounts
+  // send cart to netlify function when component mounts
   useEffect(() => {
     createPaymentIntent()
     // eslint-disable-next-line

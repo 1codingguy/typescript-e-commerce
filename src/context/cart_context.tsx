@@ -19,7 +19,6 @@ export type cartType = {
 }
 
 export type initialStateType = {
-  // add shipping fee later
   cart: cartType[]
   totalItems: number
   totalAmount: number

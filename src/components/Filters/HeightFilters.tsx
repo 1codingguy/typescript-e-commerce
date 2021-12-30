@@ -13,10 +13,6 @@ export const HeightFilters = () => {
   } = useFilterContext()
   const uniqueHeights: any = getUniqueValues(allProducts, 'height', true)
 
-  // uniqueHeights.sort((a: string, b: string) => {
-  //   return Number(a.match(/\d+/)![0]) - Number(b.match(/\d+/)![0])
-  // })
-
   const sortedUniqueHeight = sortUniqueCategoriesByFirstNumber(uniqueHeights)
 
   return (

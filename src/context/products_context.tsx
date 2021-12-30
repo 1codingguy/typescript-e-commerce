@@ -61,7 +61,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
       const singleProduct: productDataType = state.allProducts.filter(
         (product: productDataType) => product.slug === slug
       )[0]
-      // running filter() on empty allProducts will result in undefined
+      // running filter() on empty allProducts [] will result in undefined
       // this if clause guard against such case
       if (singleProduct) {
         dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })

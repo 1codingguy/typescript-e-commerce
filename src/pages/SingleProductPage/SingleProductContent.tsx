@@ -12,13 +12,11 @@ export const SingleProductContent = () => {
   return (
     <section className='content'>
       <h2>{name}</h2>
-      {/* insert stars component here  */}
       <h5 className='price'>{price && formatPrice(price)}</h5>
       <p className='desc'>{itemDescription}</p>
       <p className='info'>
         <span>Availability : </span>
         {stock ? 'In stock' : 'Out of stock'}
-        {/* logic showing in stock or out of stock */}
       </p>
 
       {brand ? (
