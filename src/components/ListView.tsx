@@ -13,7 +13,10 @@ const ListView: React.FC<{ filteredProducts: productDataType[] }> = ({
         const { slug, images, name, price, itemDescription } = product
         return (
           <article key={slug}>
-            <img src={images[0]} alt={name} />
+            <Link to={`/products/${slug}`}>
+              <img src={images[0]} alt={name} />
+            </Link>
+
             <div>
               <h4>{name}</h4>
               <h5>{formatPrice(price)}</h5>

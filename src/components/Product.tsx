@@ -11,9 +11,11 @@ const Product: React.FC<{ product: productDataType }> = ({ product }) => {
   return (
     <Wrapper>
       <div className='container'>
-        <img src={image} alt={name} />
-        <Link to={`/products/${slug}`} className='link'>
-          <FaSearch />
+        <Link to={`/products/${slug}`}>
+          <img src={image} alt={name} />
+          <div className='link'>
+            <FaSearch />
+          </div>
         </Link>
       </div>
       <footer>
