@@ -1,19 +1,24 @@
 import React from 'react'
 import { useFilterContext } from '../../context/filter_context'
-import { getUniqueValues } from '../../utils/helpers'
+import {
+  getUniqueValues,
+  sortUniqueCategoriesByFirstNumber,
+} from '../../utils/helpers'
 
 export const AgeFilters = () => {
   const {
     updateFilters,
     filters: { age },
-    allProducts
+    allProducts,
   } = useFilterContext()
   const uniqueAges: any = getUniqueValues(allProducts, 'age', true)
+
+  const sortedUniqueAges = sortUniqueCategoriesByFirstNumber(uniqueAges)
 
   return (
     <div className='form-control checkbox'>
       <h5>age</h5>
-      {uniqueAges.map((ageCategory: string) => {
+      {sortedUniqueAges.map((ageCategory: string) => {
         return (
           <label key={ageCategory}>
             <input
