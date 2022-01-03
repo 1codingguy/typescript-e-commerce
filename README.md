@@ -39,16 +39,16 @@
 ## Links to source code and live site:
 - [Live site hosted on Netlify](https://-cute-buddy.netlify.app/)
 - [Source code on Github](https://github.com/-1codingguy/typescript-e-commerce)
-- [GraphQL playground for CMS data hosted on Sanity](https://bqk6gkzk.api.sanity.io/v1/-graphql/production/default)
+- [GraphQL playground for CMS data hosted on Sanity](https://bqk6gkzk.api.sanity.io/v1/graphql/production/default)
 
 
 ## How to navigate this project? Click on the link for related source code:
 1. A simple [Sanity CMS schema](https://github.com/1codingguy/typescript-e-commerce/blob/main/cutebuddy/schemas/product.js) is used: add, amend or delete product can be done on the CMS instead of in the source code.
 
-2. Click on each ServicesCard button will do two things:
-  - route to `ProductsPage`
-  - filter the products according to which button gets clicked on
-  - ![services-button](./src/assets/services-button.png)
+2. Click on each `ServicesCard` button will do two things:
+  - route to `ProductsPage`;
+  - filter the products according to which button gets clicked on.
+  <img src="./src/assets/services-button.png" alt="services-button" width="70%"/>
     - To achieve this, it has to go through three steps:
     1. clear the previous filters
     2. set `isClickFromServices` state variable to tru
@@ -57,20 +57,20 @@
     - Why is there a `isClickFromServices` variable?
       - Each time `ServicesPage` is mounted, the page should display all product, i.e. filters should be cleared.
       - But when routed from `Services` component, `ProductsPage` should display products of relevant service.
-      - To work around this, an if statement is used to check if the page is routed from `Services`, (click here)[https://github.com/1codingguy/typescript-e-commerce/blob/main/src/pages/ProductsPage.tsx#L10] for the relevant code. 
+      - To work around this, an if statement is used to check if the page is routed from `Services`, [click here for the relevant code](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/pages/ProductsPage.tsx#L10). 
 
 
 3. Shoppers can choose to view the products in `ListView` or `GridView`. [Click here for relevant code](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/ProductList.tsx#L24).
 
 4. Shoppers are able to filter products by different criteria, such as by keyword, price, etc. 
-  - [Click here for code structure](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/Filters/Filters.tsx#L24); 
+  - [Click here for code structure](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/Filters/Filters.tsx#L22); 
   - [Click here for filters updating function](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/reducers/filter_reducer.ts#L61).
 
 
 5. Products can be sorted by price or name, in ascending or descending order [Click here for sorting function](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/reducers/filter_reducer.ts#L41).
 
 
-6. Payment is processed by Stripe API, [click here for relevant code](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/StripeCheckout.tsx).
+6. Payment is processed by Stripe API, [click here for relevant code](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/CheckoutForm.tsx).
 
 
 ## Why I built the project this way?
@@ -80,7 +80,7 @@ Lots of thoughts were given about filter functions related to 'age' and 'height'
 
 1. create "baskets of categories"
 
-- Baby products in general are labelled as suitable for different ages, for instance, suitable for 
+- Baby products in general are labelled as suitable for different ages, for instance: 
   - 3-6 months
   - under 1 year old, or 
   - all ages
@@ -96,12 +96,13 @@ Lots of thoughts were given about filter functions related to 'age' and 'height'
   - if a product is labelled `0+`, i.e. suitable for all ages, then all of these categories should be assigned to the product.
 
 2. Why use checkbox for `age` filter, instead of selection tab like `category`?
-- A product can only be a `toy` or `clothing`, but cannot be both. Click on selection tab of `toy`  should display all the `toy`  product.
+- A product can only be either a piece of `toy` or a piece of `clothing`, but cannot be both. Click on selection tab of `toy`  should display all the `toy`  product.
 - But a product can be suitable for multiple age categories, for example: a product for infant under 6 months should have both `0-3 months` and `3-6 months`. Since multiple choices can be selected at the same time, checkbox should be used.
-- By default when the page mounts, it displays all products, which implicitly means none of the filters are applied. So a checkbox of `all` is not needed (unlike `category` filter) because the app should allow the user to apply different criteria one by one, instead of applying all the filters for the user by default.
-![age-checkbox](./src/assets/age-checkbox.png)
+- By default when the page mounts, it displays all products, which implicitly means none of the filters are applied. So a checkbox of `all` is not needed for `age` (unlike `category` filter) because the app should allow the user to apply different criteria one by one, instead of applying all the filters for the user by default.
 
-3. There should be text description about `age` and `height` on top of assigning them into different categories.
+- <img src="./src/assets/age-checkbox.png" alt="age-checkbox" width="70%"/>
+
+3. There should be text description about `age` and `height` other than the 'category baskets' alone.
 - if a product is suitable for an infant of height 65 cm, it is inside the category of `60-69 cm` for filtering purpose. 
 - But in the `singleProductPage`, it states "suitable for height: 65cm" to provide some readable text to the user. 
 - That means there are two fields related to 'height' factor in the Schema:
@@ -114,10 +115,10 @@ Lots of thoughts were given about filter functions related to 'age' and 'height'
 
 ## What can be further improved?
 1. filter in mobile view, should use a modal instead of a toggle-able menu.
-![filter-toggle](./src/assets/filter-toggle.png)
+<img src="./src/assets/filter-toggle.png" alt="filter-toggle" width="70%">
+
 2. Schema design should take into account that that one product can have different variants. For instance, A product with different colour and sizes. 
-  - A product should have a product_id
-  - Different variants should have the same product_id but different SKU
+    - Different variants of a product should have the same product_id, but a different SKU, which is not implemented in this project.
 
 ## How can you clone and tweak this project?
 
