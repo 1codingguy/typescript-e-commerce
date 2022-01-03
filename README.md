@@ -4,7 +4,7 @@
 
 ![demo](./src/assets/cute-buddy-demo.gif)
 
-### Or Go to the live site and try it for yourself [here](https://-cute-buddy.netlify.app/)
+### Or Go to the live site and try it for yourself [here](https://cute-buddy.netlify.app/)
 
 
 ## What is this project about?
@@ -21,18 +21,14 @@
 ### Styling:
 - styled-components
 - CSS
-
 ### Routing:
 - react-router
-
 ### Payment processing:
 - Stripe API
-
 ### CMS:
 - Sanity
 - GraphQL
 - axios
-
 ### Hosting and server side functions
 - Netlify
 
