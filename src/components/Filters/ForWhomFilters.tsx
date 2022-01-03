@@ -9,6 +9,9 @@ export const ForWhomFilters = () => {
     filters: { forWhom },
   } = useFilterContext()
   const uniqueForWhoms = getUniqueValues(allProducts, 'forWhom')
+  
+  uniqueForWhoms.sort()
+  
   return (
     <div className='form-control'>
       <h5>Product for who?</h5>
