@@ -46,10 +46,11 @@
   - filter the products according to which button gets clicked on.
   <img src="./src/assets/services-button.png" alt="services-button" width="70%"/>
     - To achieve this, it has to go through three steps:
-    1. clear the previous filters
-    2. set `isClickFromServices` state variable to tru
-    3. update filters according to the button gets clicked on
-    - [Click here](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/Services/ServicesCards.tsx#L21) for the relevant code.
+      1. clear the previous filters
+      2. set `isClickFromServices` state variable to tru
+      3. update filters according to the button gets clicked on
+
+      [Click here for the relevant code](https://github.com/1codingguy/typescript-e-commerce/blob/main/src/components/Services/ServicesCards.tsx#L21) .
     - Why is there a `isClickFromServices` variable?
       - Each time `ServicesPage` is mounted, the page should display all product, i.e. filters should be cleared.
       - But when routed from `Services` component, `ProductsPage` should display products of relevant service.
