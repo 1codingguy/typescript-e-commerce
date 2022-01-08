@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HeroWords } from './HeroWords'
-import { HeroImage } from './HeroImage'
-import { ShopNowButton } from './ShopNowButton'
+import hero from '../assets/hero.jpg'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -17,6 +16,38 @@ const Hero = () => {
 }
 
 export default Hero
+
+const HeroWords = () => {
+  return (
+    <>
+      <h1>
+        high quality <br />
+        product for your little ones
+      </h1>
+      <p>
+        Quality products imported from Japan, Europe and USA for baby boys and
+        girls, also for mummy.
+      </p>
+    </>
+  )
+}
+
+const ShopNowButton = () => {
+  return (
+    <Link to='/products' className='btn hero-btn'>
+      shop now
+    </Link>
+  )
+}
+
+const HeroImage = () => {
+  return (
+    <article className='img-container'>
+      <img src={hero} alt='hero' className='main-img' />
+      {/* insert one more image here */}
+    </article>
+  )
+}
 
 const Wrapper = styled.section`
   min-height: 60vh;

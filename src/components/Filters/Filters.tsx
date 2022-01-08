@@ -9,6 +9,7 @@ import { HeightFilters } from './HeightFilters'
 import { ClearFilters } from './ClearFilters'
 import { FiltersButton } from './FiltersButton'
 
+/** filters applied to the products list */
 const Filters = () => {
   const [showFilters, setShowFilters] = useState(false)
 

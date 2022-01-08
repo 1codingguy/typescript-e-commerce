@@ -15,6 +15,7 @@ export const CategoryFilters = () => {
       <h5>category</h5>
       <div>
         {uniqueCategories.map((uniqueCategory) => {
+          // without this if statement, TS complains uniqueCategory is possibility undefined
           if (typeof uniqueCategory === 'string') {
             return (
               <button
