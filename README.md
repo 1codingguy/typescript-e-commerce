@@ -164,12 +164,4 @@ $ npm start
 
 Happy coding!
 
----
 
-## Author
-
-**coding-guy**
-
-- [GitHub](https://github.com/1codingguy)
-- [Blog](https://blog.coding-guy.com/)
-- [Twitter](https://twitter.com/1codingguy)
